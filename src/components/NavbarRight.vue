@@ -3,7 +3,8 @@
     <ul class="navbar-nav">
       <li class="logo">
         <a href="#" class="nav-link expand-nav" @click="isNavClicked = !isNavClicked">
-          <span class="link-text logo-text" :style="{left: isNavClicked? '0px':'-999px'}">Channels</span>
+         <span class="link-text logo-text" :style="{left: isNavClicked? '7.5rem':'999px'}">Friends</span>
+
           <svg
             aria-hidden="true"
             focusable="false"
@@ -13,8 +14,9 @@
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
             class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-            :style="{marginLeft : isNavClicked? '13rem':'1.5rem', transform: isNavClicked? 'rotate(-180deg)':'rotate(0deg)'}"
+            :style="{marginRight : isNavClicked? '13rem':'1.5rem', transform: isNavClicked? 'rotate(0deg)':'rotate(-180deg)'}"
           >
+
             <g class="fa-group">
               <path
                 fill="currentColor"
@@ -28,16 +30,6 @@
               ></path>
             </g>
           </svg>
-        </a>
-      </li>
-
-      <li class="nav-item" v-for='streamer in streamers' :key='streamer'>
-        <a href="#" class="nav-link">
-          <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" :style="{filter: streamer.isLive? 'opacity(1)' : 'opacity(0.5)'}">
-          <div class="streamer-details">
-            <span class="streamer-name">{{streamer['display_name']}}</span>
-            <span class="streamer-game">{{streamer['game_name']}}</span>
-          </div>        
         </a>
       </li>
 
@@ -163,7 +155,7 @@ body::-webkit-scrollbar-thumb {
 .navbar {
   margin-top: 3rem;
   position: fixed;
-  left : 0;
+  right : 0;
   background-color: var(--bg-primary);
   transition: width 150ms ease;
   overflow: scroll;

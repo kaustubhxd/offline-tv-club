@@ -1,5 +1,7 @@
 <template>
+  <Header/>
   <Navbar/>
+  <NavbarRight/>
   <Home/>
 </template>
 
@@ -7,9 +9,11 @@
 // import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Navbar from './components/Navbar'
+import Header from './components/Header'
+import NavbarRight from './components/NavbarRight'
 
 export default {
-  components: {Navbar, Home}
+  components: {Header,Navbar,NavbarRight, Home}
 }
 </script>
 

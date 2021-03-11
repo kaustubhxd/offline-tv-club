@@ -2,7 +2,7 @@
     <div class="container">
         <h1>Hello Hello</h1>
         <button @click="authorizePublic">Authorize</button>
-                <button @click="getStreamInfo">Get Pokimane</button>
+                <button @click="getStreamInfo">Refresh</button>
         <p>{{streamers}}</p>
         <!-- <ImplicitAuth/> -->
     </div>
@@ -21,6 +21,11 @@ export default {
 
         onMounted(() => {
             parseAccessToken()
+            getStreamInfo()
+            setInterval(()=> {
+                console.log('refreshing data..')
+                getStreamInfo()
+            },30000)
         })
 
         return{
@@ -35,6 +40,7 @@ export default {
 <style lang='scss'>
 .container{
     margin-left : 5rem;
+    margin-right: 5rem;
     padding     : 1rem;
 }
 
