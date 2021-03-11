@@ -1,0 +1,77 @@
+const { ref } = require("vue");
+// https://www.reddit.com/user/FullAtomicBoY/
+
+const streamers = ref({
+    'lilypichu' : {
+        id          :   31106024,
+        display_name:   'LilyPichu',
+        channel_name:   'lilypichu',
+        avatar_name :   'lilypichu.png',
+        platform    :   'Twitch',
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   true,
+        game_id     :   0,
+        game_name   :   '',
+        title       :   '',
+        view_count  :   '',
+    },
+    'michael' : {
+        id          :   225413536,
+        display_name:   'Michael Reeves',
+        channel_name:   'michaelreeves',
+        avatar_name :   'michael.png',
+        platform    :   'Twitch',
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   true,
+        game_id     :   0,
+        game_name   :   '',
+        title       :   '',
+        view_count  :   '',
+    },
+    'toast' : {
+        id          :   0,
+        display_name:   'DisguisedToast',
+        channel_name:   'DisguisedToast',
+        avatar_name :   'toast.png',
+        platform    :   'Facebook',
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   true,
+        game_id     :   0,
+        game_name   :   '',
+        title       :   '',
+        view_count  :   '',
+    },
+    'pokimane' : {
+        id          :   0,
+        display_name:   'Pokimane',
+        channel_name:   'pokimane',
+        avatar_name :   'pokimane.png',
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   true,
+        game_id     :   0,
+        game_name   :   '',
+        title       :   '',
+        view_count  :   '',
+    },
+    'scarra' : {
+        id          :   0,
+        display_name:   'Scarra',
+        channel_name:   'Scarra',
+        avatar_name :   'scarra.png',
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   true,
+        game_id     :   0,
+        game_name   :   '',
+        title       :   '',
+        view_count  :   '',
+    },
+}); 
+
+export {
+    streamers
+}
