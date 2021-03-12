@@ -2,45 +2,31 @@
     <div class="container" 
       :style="{ marginLeft : sideNavState.leftNavExpand ? '14rem':'5rem',
                 marginRight : sideNavState.rightNavExpand ? '14rem':'5rem'}">
-<!-- 
-        <div id='content'>
-                <h1>Hello Hello</h1>
-                <button @click="authorizePublic">Authorize</button>
-                        <button @click="getStreamInfo">Refresh</button>
-                <p>{{streamers}}</p>
-                <ImplicitAuth/>
-        </div> -->
-        <Blob/>
+        <Blob v-if="!isLoggedIn"/>
     </div>
     
 </template>
 
 <script>
-import ImplicitAuth from './ImplicitAuth'
-import {authorizePublic, parseAccessToken,getStreamInfo} from '../scripts/twitch_implicit_auth'
+import {refreshStreams} from '../scripts/twitch_implicit_auth'
 import { onMounted } from 'vue'
 import {streamers} from '../data/streamers'
 import {sideNavState} from '../store/state'
 import Blob from '../components/Blob'
+import {isLoggedIn} from '../store/state'
 
 export default {
-    components: {ImplicitAuth,Blob},
+    components: {Blob},
     setup(){
 
         onMounted(() => {
-            parseAccessToken()
-            getStreamInfo()
-            setInterval(()=> {
-                console.log('refreshing data..')
-                getStreamInfo()
-            },30000)
+            refreshStreams()
         })
 
         return{
-            authorizePublic,
-            getStreamInfo,
             streamers,
-            sideNavState
+            sideNavState,
+            isLoggedIn
         }
     }
 }

@@ -1,11 +1,17 @@
 <template>
-  <a href="#" class="glitch" data-glitch="Explore">オフラインテレビ</a>
+  <a href="#" class="glitch" :class="{'glitch-once' : glitchLogoOnce}">オフラインテレビ</a>
 </template>
 
 <script>
 // https://codepen.io/DevchamploO/pen/QBWdqd  
-export default {
+import {glitchLogoOnce} from '../store/state'
 
+export default {
+  setup(){
+    return {
+      glitchLogoOnce
+    }
+  }
 }
 </script>
 <style scoped>
@@ -24,26 +30,32 @@ export default {
 
   .glitch:before,
   .glitch:after{
-	content: 'オフラインテレビ';
-	opacity: 0.8;
-	position: absolute;
-	top:0;
-	left:0;
+    content: 'オフラインテレビ';
+    opacity: 0.8;
+    position: absolute;
+    top:0;
+    left:0;
   }
 
   .glitch:before{
-	color: #0ff;
-	z-index: -1;
+    color: #0ff;
+    z-index: -1;
   }
   .glitch:after{
-	color: #f0f;
-	z-index: -2;
+    color: #f0f;
+    z-index: -2;
   }
-  .glitch:hover:before {
-	animation: glitch .5s cubic-bezier(.25, .46, .45, .94) both infinite
-} 
 
-.glitch:hover:after {
-	animation: glitch .3s cubic-bezier(.25, .46, .45, .94) reverse both infinite
+  .glitch:hover:before {
+	  animation: glitch .5s cubic-bezier(.25, .46, .45, .94) both infinite
+  } 
+
+  .glitch:hover:after {
+    font-family: 'Open Sans';
+    font-weight: 300;
+  }
+
+.glitch-once::before, .glitch-once::after {
+	animation: glitch .5s cubic-bezier(.25, .46, .45, .94) both;
 }
 </style>

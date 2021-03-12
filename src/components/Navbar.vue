@@ -31,16 +31,19 @@
         </a>
       </li>
 
-      <li class="nav-item" v-for='streamer in streamers' :key='streamer'>
+      <li class="nav-item" v-for='(streamer,streamer_id) in streamers' :key='streamer'>
         <a href="#" class="nav-link">
-          <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" :style="{filter: streamer.isLive? 'opacity(1)' : 'opacity(0.5)'}">
+          <div class="avatar-container">
+            <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" :style="{filter: streamer.isLive? 'opacity(1)' : 'opacity(0.5)'}">
+            <LiveIcon :streamer='streamer_id'/>
+          </div>
           <div class="streamer-details">
             <span class="streamer-name">{{streamer['display_name']}}</span>
             <span class="streamer-game">{{streamer['game_name']}}</span>
           </div>        
         </a>
       </li>
-
+<!-- 
       <li class="nav-item" id="themeButton">
         <a href="#" class="nav-link">
           <svg
@@ -117,7 +120,7 @@
           </svg>
           <span class="link-text">Settings</span>
         </a>
-      </li>
+      </li> -->
     </ul>
   </nav>
 </template>
@@ -125,8 +128,10 @@
 <script>
 import {streamers} from '../data/streamers'
 import {sideNavState} from '../store/state'
+import LiveIcon from './LiveIcon'
 
 export default {
+  components : {LiveIcon},
   setup(){
 
 
@@ -138,7 +143,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
 
 body {
   color: black;
@@ -183,9 +188,6 @@ body::-webkit-scrollbar-thumb {
   width: 100%;
 }
 
-.nav-item:last-child {
-  margin-top: auto;
-}
 
 .nav-link {
   display: flex;
@@ -228,7 +230,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .logo {
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
   text-align: center;
   color: var(--text-secondary);
   background: var(--bg-secondary);
@@ -321,6 +323,7 @@ body::-webkit-scrollbar-thumb {
 .streamer-icon{
   width       : 4rem;   
   margin-left : 5px;
+  transform: scaleX(-1);
 }
 
 .streamer-details{
@@ -331,5 +334,18 @@ body::-webkit-scrollbar-thumb {
 
 .expand-nav{
   height: 4rem;
+}
+
+.streamer-game{
+  font-family: 'Open Sans';
+  font-weight: 300;
+}
+
+.avatar-container{
+  position: relative;
+
+  .streamer-icon{
+    display: block;
+  }
 }
 </style>

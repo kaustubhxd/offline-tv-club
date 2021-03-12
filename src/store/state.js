@@ -5,6 +5,12 @@ const sideNavState = ref({
     rightNavExpand  : false,
 })
 
+const isLoggedIn = ref(false)
+
+const glitchLogoOnce = ref(false)
+
 export {
-    sideNavState
+    sideNavState,
+    isLoggedIn,
+    glitchLogoOnce
 }

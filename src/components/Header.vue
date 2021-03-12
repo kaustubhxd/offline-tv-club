@@ -30,7 +30,9 @@ export default {
 li,
 a,
 button {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: italic;
   font-size: 20px;
   color: #edf0f1;
   text-decoration: none;

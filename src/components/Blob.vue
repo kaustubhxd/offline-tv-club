@@ -6,12 +6,21 @@
     </svg>
     </div>
     <!--Text Shine Effect from https://codepen.io/colloque/pen/bDgmx -->
-    <a ><h1 class="blob-text">Log in<br>using<br>Twitch<br></h1></a>
+    <a ><h1 class="blob-text" @click='authorizePublic()'>{{ isLoggedIn ? ``:`Log in\nusing\nTwitch` }}</h1></a>
     
 </template>
 
 <script>
+import {isLoggedIn} from '../store/state'
+import {authorizePublic} from '../scripts/twitch_implicit_auth'
+
 export default {
+  setup(){
+    return{
+      isLoggedIn,
+      authorizePublic
+    }
+  }
 
 }
 </script>
@@ -21,9 +30,9 @@ h1 {
   color: #23232e;
   font-size: 20vmin;
   line-height: 1;
-  font-weight: bold;
   letter-spacing: 2px;
   font-family: 'Poppins', sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   padding-left: 40px;
   width : min-content;
