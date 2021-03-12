@@ -1,9 +1,9 @@
 <template>
-  <nav class="navbar" :style="{width : isNavClicked? '16rem':'5rem'}">
+  <nav class="navbar" :style="{width : sideNavState.leftNavExpand? '14rem':'5rem'}">
     <ul class="navbar-nav">
       <li class="logo">
-        <a href="#" class="nav-link expand-nav" @click="isNavClicked = !isNavClicked">
-          <span class="link-text logo-text" :style="{left: isNavClicked? '0px':'-999px'}">Channels</span>
+        <a href="#" class="nav-link expand-nav" @click="sideNavState.leftNavExpand = !sideNavState.leftNavExpand">
+          <span class="link-text logo-text" :style="{left: sideNavState.leftNavExpand? '0px':'-999px'}">Members</span>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -13,7 +13,7 @@
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
             class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-            :style="{marginLeft : isNavClicked? '13rem':'1.5rem', transform: isNavClicked? 'rotate(-180deg)':'rotate(0deg)'}"
+            :style="{marginLeft : sideNavState.leftNavExpand? '11rem':'1.5rem', transform: sideNavState.leftNavExpand? 'rotate(-180deg)':'rotate(0deg)'}"
           >
             <g class="fa-group">
               <path
@@ -123,17 +123,16 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import {streamers} from '../data/streamers'
+import {sideNavState} from '../store/state'
 
 export default {
   setup(){
 
-    const isNavClicked = ref(false)
 
     return {
       streamers,
-      isNavClicked
+      sideNavState,
     }
   }
 }
@@ -264,7 +263,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   /* .navbar:hover {
-    width: 16rem;
+    width: 14rem;
   } */
 
   .navbar:hover .link-text {

@@ -1,9 +1,9 @@
 <template>
-  <nav class="navbar" :style="{width : isNavClicked? '16rem':'5rem'}">
+  <nav class="navbar" :style="{width : sideNavState.rightNavExpand? '14rem':'5rem'}">
     <ul class="navbar-nav">
       <li class="logo">
-        <a href="#" class="nav-link expand-nav" @click="isNavClicked = !isNavClicked">
-         <span class="link-text logo-text" :style="{left: isNavClicked? '7.5rem':'999px'}">Friends</span>
+        <a href="#" class="nav-link expand-nav" @click="sideNavState.rightNavExpand = !sideNavState.rightNavExpand">
+         <span class="link-text logo-text" :style="{left: sideNavState.rightNavExpand? '7rem':'999px'}">Friends</span>
 
           <svg
             aria-hidden="true"
@@ -14,7 +14,7 @@
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
             class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-            :style="{marginRight : isNavClicked? '13rem':'1.5rem', transform: isNavClicked? 'rotate(0deg)':'rotate(-180deg)'}"
+            :style="{marginRight : sideNavState.rightNavExpand? '11rem':'1.5rem', transform: sideNavState.rightNavExpand? 'rotate(0deg)':'rotate(-180deg)'}"
           >
 
             <g class="fa-group">
@@ -115,17 +115,16 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import {streamers} from '../data/streamers'
+import {sideNavState} from '../store/state'
 
 export default {
   setup(){
 
-    const isNavClicked = ref(false)
 
     return {
       streamers,
-      isNavClicked
+      sideNavState,
     }
   }
 }

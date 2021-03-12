@@ -1,8 +1,10 @@
 <template>
   <Header/>
-  <Navbar/>
-  <NavbarRight/>
-  <Home/>
+  <div class='main-container'>
+    <Navbar/>
+    <Home/>
+    <NavbarRight/>
+  </div>
 </template>
 
 <script>

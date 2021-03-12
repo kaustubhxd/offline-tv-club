@@ -8,7 +8,7 @@
                 <li><a href="#">Merch</a></li>
             </ul>
         </nav>
-        <a class="cta" href="#">About</a>
+        <!-- <a class="cta" href="#">About</a> -->
     </header>
 </template>
 

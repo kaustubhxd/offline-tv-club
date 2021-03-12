@@ -15,7 +15,7 @@ export default {
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 500;
     font-size  : 20px;
-    color: white;
+    color: var(--text-secondary);
     text-decoration:none;
     
     position: relative;
