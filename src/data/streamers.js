@@ -14,7 +14,9 @@ const streamers = ref({
         game_id     :   0,
         game_name   :   '',
         title       :   '',
+        offlineTitle:   'Busy petting Temmie 🌸',
         view_count  :   '',
+        timestamp : ''
     },
     'pokimane' : {
         id          :   0,
@@ -27,7 +29,9 @@ const streamers = ref({
         game_id     :   0,
         game_name   :   '',
         title       :   '',
+        offlineTitle:   'See you soon! ^_^',
         view_count  :   '',
+        timestamp : ''
     },
     'scarra' : {
         id          :   0,
@@ -40,7 +44,9 @@ const streamers = ref({
         game_id     :   0,
         game_name   :   '',
         title       :   '',
+        offlineTitle:   'Reading some novel',
         view_count  :   '',
+        timestamp : ''
     },
     'michael' : {
         id          :   225413536,
@@ -54,7 +60,9 @@ const streamers = ref({
         game_id     :   0,
         game_name   :   '',
         title       :   '',
+        offlineTitle:   `Temmie ate the stream key, I'll be back eventually...`,
         view_count  :   '',
+        timestamp : ''
     },
     'toast' : {
         id          :   0,
@@ -68,12 +76,14 @@ const streamers = ref({
         game_id     :   0,
         game_name   :   '',
         title       :   '',
+        offlineTitle:   `I stream on Facebook.`,
         view_count  :   '',
+        timestamp : ''
     },
     'yvonne' : {
         id          :   0,
         display_name:   'Yvonnie',
-        channel_name:   'yvonniee',
+        channel_name:   'ludwiig',
         avatar_name :   'yvonne.png',
         isLive      :   false,
         thumbnailURL:  '',
@@ -81,7 +91,9 @@ const streamers = ref({
         game_id     :   0,
         game_name   :   '',
         title       :   '',
+        offlineTitle:   'Grinding LoL probably',
         view_count  :   '',
+        timestamp : ''
     },
 
 }); 

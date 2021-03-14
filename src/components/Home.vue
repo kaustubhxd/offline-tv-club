@@ -3,6 +3,7 @@
       :style="{ marginLeft : sideNavState.leftNavExpand ? '14rem':'5rem',
                 marginRight : sideNavState.rightNavExpand ? '14rem':'5rem'}">
         <Blob v-if="!isLoggedIn"/>
+        <ProfileCard/>
     </div>
     
 </template>
@@ -14,9 +15,10 @@ import {streamers} from '../data/streamers'
 import {sideNavState} from '../store/state'
 import Blob from '../components/Blob'
 import {isLoggedIn} from '../store/state'
+import ProfileCard from './ProfileCard'
 
 export default {
-    components: {Blob},
+    components: {Blob,ProfileCard},
     setup(){
 
         onMounted(() => {

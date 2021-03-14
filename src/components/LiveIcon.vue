@@ -9,7 +9,7 @@ import {streamers} from '../data/streamers'
 export default {
     props : ['streamer'],
     setup(props){
-        console.log(props.streamer)
+        // console.log(props.streamer)
         const streamer = props.streamer
         const stream = streamers.value[streamer]
 

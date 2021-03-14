@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar" :style="{width : sideNavState.leftNavExpand? '14rem':'5rem'}">
+  <nav class="navbar" :style="{width : sideNavState.leftWidth}">
     <ul class="navbar-nav">
       <li class="logo">
-        <a href="#" class="nav-link expand-nav" @click="sideNavState.leftNavExpand = !sideNavState.leftNavExpand">
+        <a href="#" class="nav-link expand-nav" @click="navExpandToggle()">
           <span class="link-text logo-text" :style="{left: sideNavState.leftNavExpand? '0px':'-999px'}">Members</span>
           <svg
             aria-hidden="true"
@@ -31,18 +31,18 @@
         </a>
       </li>
 
-      <li class="nav-item" v-for='(streamer,streamer_id) in streamers' :key='streamer'>
-        <a href="#" class="nav-link">
-          <div class="avatar-container">
-            <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" :style="{filter: streamer.isLive? 'opacity(1)' : 'opacity(0.5)'}">
-            <LiveIcon :streamer='streamer_id'/>
-          </div>
-          <div class="streamer-details">
-            <span class="streamer-name">{{streamer['display_name']}}</span>
-            <span class="streamer-game">{{streamer['game_name']}}</span>
-          </div>        
-        </a>
-      </li>
+        <li class="nav-item" v-for='(streamer,streamer_id) in streamers' :key='streamer' @contextmenu.prevent="streamerContextEvent($event, streamer_id)" :title="streamer_id">
+          <a href="#" class="nav-link">
+            <div class="avatar-container">
+              <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" :style="{filter: streamer.isLive? 'opacity(1)' : 'opacity(0.5)'}">
+              <LiveIcon :streamer='streamer_id'/>
+            </div>
+            <div class="streamer-details">
+              <span class="streamer-name">{{streamer['display_name']}}</span>
+              <span class="streamer-game">{{streamer['game_name']}}</span>
+            </div>        
+          </a>
+        </li>
 <!-- 
       <li class="nav-item" id="themeButton">
         <a href="#" class="nav-link">
@@ -129,15 +129,26 @@
 import {streamers} from '../data/streamers'
 import {sideNavState} from '../store/state'
 import LiveIcon from './LiveIcon'
+import {streamerContextEvent} from '../scripts/handleEvents'
 
 export default {
   components : {LiveIcon},
   setup(){
 
+    function navExpandToggle(){
+      sideNavState.value.leftNavExpand =  !sideNavState.value.leftNavExpand;
+        sideNavState.value.leftWidth = sideNavState.value.leftNavExpand ? 
+                                          sideNavState.value.leftOpenWidth : sideNavState.value.leftCloseWidth
+      
+
+    }
+
 
     return {
       streamers,
       sideNavState,
+      streamerContextEvent,
+      navExpandToggle
     }
   }
 }
@@ -175,6 +186,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .navbar-nav {
+  width : 100%;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -348,4 +360,9 @@ body::-webkit-scrollbar-thumb {
     display: block;
   }
 }
+
+// .member-streams{
+//   overflow-y: auto;
+//   overflow-x: hidden  ;
+// }
 </style>

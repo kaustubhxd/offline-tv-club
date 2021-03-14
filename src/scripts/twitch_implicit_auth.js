@@ -1,5 +1,6 @@
+import { computed } from '@vue/runtime-core';
 import {streamers} from '../data/streamers'
-import {isLoggedIn,glitchLogoOnce} from '../store/state'
+import {isLoggedIn,glitchLogoOnce,profileCard} from '../store/state'
 
 const CLIENT_ID     = 'vod65kbxn5l31e3czznop13kkfdk7n';
 const REDIRECT_URL  = 'http://localhost:8080';
@@ -129,12 +130,24 @@ async function getStreamInfo (){
                 streamers.value[streamer]['isLive']         = xstreamer['is_live']
                 streamers.value[streamer]['title']          = xstreamer['title']
                 streamers.value[streamer]['thumbnailURL']   = xstreamer['thumbnail_url']    
-                streamers.value[streamer]['game_id']        = xstreamer['game_id']   
+                streamers.value[streamer]['game_id']        = xstreamer['game_id']
+                streamers.value[streamer]['timestamp']      = xstreamer['started_at']
+
                 
                 console.log(xstreamer)
 
                 if (streamers.value[streamer]['isLive']){
                     getGameName(xstreamer['game_id'],streamer)   
+                    
+                    // temp: set profileCard
+                    // profileCard.value.avatar        = streamers.value[streamer]['thumbnailURL']
+                    // profileCard.value.streamer      = streamers.value[streamer]['display_name'] 
+                    // profileCard.value.title         = streamers.value[streamer]['title'] 
+                    // profileCard.value.activityTitle =  computed(() => streamers.value[streamer]['game_name'])  
+                    // profileCard.value.activityTime  = parseStartTime(streamers.value[streamer]['timestamp']) 
+
+                    // console.log(profileCard)
+
                 }else{
                     streamers.value[streamer]['game_name'] = 'Offline';
                 }
@@ -167,7 +180,10 @@ async function getGameName(game_id,streamer){
             console.log(`${key} - ${data[key]}`)
         }
         console.log(`game name: ${data['name']}`)
-        streamers.value[streamer]['game_name'] = data['name'];
+        if(streamer){
+            streamers.value[streamer]['game_name'] = data['name'];
+        }
+        return data['name'];
     })
     .catch(err => {
         console.log('Error in getGameName')
@@ -175,25 +191,48 @@ async function getGameName(game_id,streamer){
     });
 }
 
+function parseStartTime(startedAt){
+    let minutes = parseInt((Date.parse(new Date().toUTCString()) - Date.parse(startedAt)) / 60000)
+    let hours   = parseInt(minutes / 60)
+
+    if (hours > 0){
+        return `Since ${hours} hours`
+    }else if (minutes > 0){
+        return `Since ${minutes} minutes`
+    }else{
+        return `Since god knows?`
+    }
+}
+
 
 function refreshStreams(){
     if(parseAccessToken()) 
     {   
         console.log('listener on')
-        getStreamInfo()
+        if(navigator.onLine) {
+            getStreamInfo()
+        }
         glitchLogoOnce.value = true
-        setTimeout(() => glitchLogoOnce.value = false, 3000);        
+        setTimeout(() => glitchLogoOnce.value = false, 3000); 
+               
         var refreshStreams =  setInterval(()=> {
             console.log('refreshing data..')
+
             glitchLogoOnce.value = true
             setTimeout(() => glitchLogoOnce.value = false, 3000);
-            if(isLoggedIn.value){
-                getStreamInfo()
-            }else{
-                clearInterval(refreshStreams)
-                console.log('routine stream refresh now stopped')
-            }
+
+                if(isLoggedIn.value && navigator.onLine ){
+                    getStreamInfo()
+                }else if(!navigator.onLine){
+                    console.log('internet down. will retry later.')
+                }
+                else{
+                    clearInterval(refreshStreams)
+                    console.log('routine stream refresh now stopped')
+                }
         },30000)
+    }else{
+        console.log('check token or offline')
     }
 }
 
@@ -201,5 +240,6 @@ export{
     authorizePublic,
     parseAccessToken,
     getStreamInfo,
-    refreshStreams
+    refreshStreams,
+    parseStartTime
 }
