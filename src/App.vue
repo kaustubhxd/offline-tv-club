@@ -18,9 +18,9 @@ import {leftClickEvent, rightClickEvent} from './scripts/handleEvents'
 export default {
   components: {Header,Navbar,NavbarRight, Home},
   setup(){
-    document.addEventListener('click', () => {
-      console.log('left-click')
-      leftClickEvent()
+    document.addEventListener('click', (e) => {
+      // console.log('left-click')
+      leftClickEvent(e)
 
     })
   }
@@ -28,7 +28,20 @@ export default {
 </script>
 
 <style lang="scss">
+#app{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: auto;
+  padding-top: 3rem;
+}
+
+
 .main-container{
   display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+  flex: 1 0 auto;
 }
 </style>

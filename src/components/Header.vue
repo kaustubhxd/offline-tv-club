@@ -1,5 +1,6 @@
 <template>
   <header>
+    <div class="header-content">
         <Logo/>
         <nav>
             <ul class="nav__links">
@@ -9,7 +10,9 @@
             </ul>
         </nav>
         <!-- <a class="cta" href="#">About</a> -->
-    </header>
+    </div>
+  </header>
+
 </template>
 
 <script scoped>
@@ -39,15 +42,25 @@ button {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* justify-content: space-between;
+  align-items: center; */
   padding: 0 15px;
   background-color: #141418;
-  position: sticky; /* Added for making nav sticky */
-  top: 0; /* Added for making nav sticky */
 
   height: 3rem;
+
+  position: fixed; /* Added for making nav sticky */
+  display: block;
+  min-width: auto;
+  top: 0; /* Added for making nav sticky */
+  left: 0;
+  width: 100%;
+  z-index: 5050;
+}
+
+.header-content{
+  display: flex;
+  justify-content: space-between;
 }
 
 main {
@@ -58,6 +71,7 @@ main {
 
 .nav__links {
   list-style: none;
+  margin: 5px;
 }
 
 .nav__links li {

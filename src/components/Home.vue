@@ -1,15 +1,15 @@
 <template>
-    <div class="container" 
-      :style="{ marginLeft : sideNavState.leftNavExpand ? '14rem':'5rem',
-                marginRight : sideNavState.rightNavExpand ? '14rem':'5rem'}">
+
+    <div class="container" >
         <Blob v-if="!isLoggedIn"/>
         <ProfileCard/>
+        <!-- {{streamers}} -->
     </div>
     
 </template>
 
 <script>
-import {refreshStreams} from '../scripts/twitch_implicit_auth'
+import {refreshStreams} from '../scripts/twitch'
 import { onMounted } from 'vue'
 import {streamers} from '../data/streamers'
 import {sideNavState} from '../store/state'

@@ -23,7 +23,7 @@ export default {
     font-size  : 20px;
     color: var(--text-secondary);
     text-decoration:none;
-    
+    margin: 5px;
     position: relative;
   }
 

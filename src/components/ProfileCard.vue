@@ -1,14 +1,14 @@
 <template>
-    <div class="context-container" :style="{left: profileCard.left, top: profileCard.top, display : profileCard.display}">
-        <div class="status">
-            <div class="avatar" :style="{backgroundImage: profileCard.avatar == ''? '' : 'url(' + profileCard.avatar + ')'}"></div>
-            <div class="name" :title="profileCard.streamer">{{ profileCard.streamer }}</div>
-            <div class="title" :title="profileCard.title">{{ profileCard.title }}</div>
-            <span class="activity" v-show="profileCard.isLive">
-                <div class="activity-image" :style="{backgroundImage: 'url(' + require('../assets/avatars/' + profileCard.activityImage) + ')'}"></div> 
-                <div class='activity-details'>
-                    <div class="activity-name" :title='profileCard.activityTitle'>{{ profileCard.activityTitle }}</div>
-                    <div class="activity-time" :title='profileCard.activityTime'>{{ profileCard.activityTime }}</div>
+    <div class="context-container" ancestor="card" :style="{left: profileCard.left, top: profileCard.top, display : profileCard.display}">
+        <div class="status" ancestor="card">
+            <div class="avatar" ancestor="card" :style="{backgroundImage: profileCard.avatar == ''? '' : 'url(' + profileCard.avatar + ')'}"></div>
+            <div class="name" ancestor="card" :title="profileCard.streamer">{{ profileCard.streamer }}</div>
+            <div class="title" ancestor="card" :title="profileCard.title">{{ profileCard.title }}</div>
+            <span class="activity" ancestor="card" v-show="profileCard.isLive">
+                <div class="activity-image" ancestor="card" :style="{backgroundImage: profileCard.activityImage === ''? '' : 'url(' + profileCard.activityImage + ')'}"></div> 
+                <div class='activity-details' ancestor="card">
+                    <div class="activity-name" ancestor="card" :title='profileCard.activityTitle'>{{ profileCard.activityTitle }}</div>
+                    <div class="activity-time" ancestor="card" :title='profileCard.activityTime'>{{ profileCard.activityTime }}</div>
                 </div>
             </span>
         </div>
@@ -35,7 +35,7 @@ export default {
         position: absolute;
         background-color: #23232e;
         width: 300px;
-        height: 400px;
+        padding-bottom: 6rem;
         border-radius: 4%;
         overflow: auto;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

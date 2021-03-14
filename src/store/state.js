@@ -2,12 +2,14 @@ import {ref} from 'vue';
 
 const sideNavState = ref({
     leftNavExpand   : false,
-    leftOpenWidth   : '14rem',
+    leftOpenWidth   : '15rem',
     leftCloseWidth  : '5rem',
     leftWidth       : '5rem',
 
     rightNavExpand  : false,
     rightWidth       : '5rem',
+    rightOpenWidth   : '15rem',
+    rightCloseWidth  : '5rem',
 
 })
 
@@ -29,7 +31,7 @@ const profileCard = ref({
     streamer  : 'Michael Reeves',
     title     : 'Valorant today w/OfflineTV',
     
-    activityImage  :   'valorant.png',
+    activityImage  :   '',
     activityTitle  :    'Pirates of the Carribean',
     activityTime   :   'Since 15 mins',
 })
@@ -64,6 +66,5 @@ export {
 // title: "Short chill stream | Apex?"
 // ​
 // <prototype>: Object { … }
-// twitch_implicit_auth.js:134
 
 // Date.parse(new Date().toUTCString()) - Date.parse("2021-03-13T07:44:51Z")

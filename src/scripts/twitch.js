@@ -1,4 +1,4 @@
-import { computed } from '@vue/runtime-core';
+import { markRaw } from '@vue/reactivity';
 import {streamers} from '../data/streamers'
 import {isLoggedIn,glitchLogoOnce,profileCard} from '../store/state'
 
@@ -97,15 +97,20 @@ function handleTwitchResponseErrors(code){
 }
 
 async function getStreamInfo (){
-
+    let QUERY = ''
+    let gameInfo = {}
     for (var streamer in streamers.value){
-        console.log(streamer)
+        // console.log(streamer)
+        QUERY += 'user_login=' +  streamers.value[streamer]['channel_name'] + '&'
+    }
+        console.log(QUERY)
+
         await fetch(
-            'https://api.twitch.tv/helix/search/channels?query=' + streamers.value[streamer]['channel_name'],
+            'https://api.twitch.tv/helix/streams?' + QUERY,
             {
                 "headers": {
-                    "Client-ID": CLIENT_ID,
-                    "Authorization": "Bearer " + ACCESS_TOKEN
+                    "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
+                    "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
                 }
             }
         )
@@ -125,71 +130,130 @@ async function getStreamInfo (){
             // for(var key in resp.data[0]){
             //     console.log(`${key} - ${resp.data[0][key]}`)
             // }
-            if(resp){
-                let xstreamer = resp.data[0]
-                streamers.value[streamer]['isLive']         = xstreamer['is_live']
-                streamers.value[streamer]['title']          = xstreamer['title']
-                streamers.value[streamer]['thumbnailURL']   = xstreamer['thumbnail_url']    
-                streamers.value[streamer]['game_id']        = xstreamer['game_id']
-                streamers.value[streamer]['timestamp']      = xstreamer['started_at']
+            // console.log(resp.data.length)
+            if(resp.data.length){
+                let response = resp.data
+                // console.log(response)
+                // https://stackoverflow.com/a/16626758
+                response.forEach((xstreamer, index, wholeArray) => {
+                    // console.log(xstreamer)
+                    let streamer_name = xstreamer.user_login
+                    // console.log(streamer_name)
+                    streamers.value[streamer_name]['isLive']         = xstreamer['type'] === 'live'
+                    streamers.value[streamer_name]['title']          = xstreamer['title']
+                    streamers.value[streamer_name]['game_id']        = xstreamer['game_id']
+                    streamers.value[streamer_name]['game_name']      = xstreamer['game_name']
+                    streamers.value[streamer_name]['timestamp']      = parseStartTime(xstreamer['started_at'])
+                    streamers.value[streamer_name]['view_count']     = xstreamer['viewer_count']
 
-                
-                console.log(xstreamer)
-
-                if (streamers.value[streamer]['isLive']){
-                    getGameName(xstreamer['game_id'],streamer)   
-                    
-                    // temp: set profileCard
-                    // profileCard.value.avatar        = streamers.value[streamer]['thumbnailURL']
-                    // profileCard.value.streamer      = streamers.value[streamer]['display_name'] 
-                    // profileCard.value.title         = streamers.value[streamer]['title'] 
-                    // profileCard.value.activityTitle =  computed(() => streamers.value[streamer]['game_name'])  
-                    // profileCard.value.activityTime  = parseStartTime(streamers.value[streamer]['timestamp']) 
-
-                    // console.log(profileCard)
-
-                }else{
-                    streamers.value[streamer]['game_name'] = 'Offline';
-                }
-    
+                    gameInfo[xstreamer['game_id']] = streamer_name
+                });
+                getGameThumbnails(gameInfo)
                 // console.log(streamers.value[streamer])
+            }
+            for(var zstream in streamers.value){
+                // console.log(streamers.value[zstream].isLive)
+                if(!streamers.value[zstream].isLive){
+                    streamers.value[zstream].game_name = 'Offline'
+                }
             }
         })
         .catch(err => {
             console.log('Error in getStreamInfo!')
             console.log(err);
         });
-    }
     
 }
 
-async function getGameName(game_id,streamer){
+// https://dev.twitch.tv/docs/api/reference#get-users
+async function getChannelInfo(){
+    let QUERY = ''
+    for (var streamer in streamers.value){
+        // console.log(streamer)
+        QUERY += 'id=' +  streamers.value[streamer]['id'] + '&'
+    }
+        console.log(QUERY)
+
+        await fetch(
+            'https://api.twitch.tv/helix/users?' + QUERY,
+            {
+                "headers": {
+                    "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
+                    "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
+                }
+            }
+        )
+        .then(resp => {
+            // console.log(resp.status); // Will show you the status
+            if(resp.ok){
+                return resp.json()
+            }else{
+                handleTwitchResponseErrors(resp.status)
+                throw new Error("HTTP status " + response.status);
+            }
+        }).then(resp => {
+            console.log(resp.data.length)
+            if(resp.data.length){
+                let response = resp.data
+                console.log(response)
+                // https://stackoverflow.com/a/16626758
+                response.forEach((xstreamer, index, wholeArray) => {
+                    // console.log(xstreamer)
+                    let streamer_name = xstreamer.login
+                    // console.log(streamer_name)
+                    if(streamers.value[streamer_name]){
+                        streamers.value[streamer_name]['thumbnailURL']  = xstreamer['profile_image_url']
+                    }
+                });
+            }
+    }).catch(err => {
+            console.log('Error in getStreamInfo!')
+            console.log(err);
+        });
+    
+}
+
+async function getGameThumbnails(gameInfo){
+    let GAME_IDS = Object.keys(gameInfo)
+    console.log(GAME_IDS)
+    let QUERY = ''
+    for (const id of GAME_IDS){
+        QUERY += 'id=' +  id + '&'
+    }
+    console.log(QUERY)
     await fetch(
-        'https://api.twitch.tv/helix/games?id=' + game_id,
+        'https://api.twitch.tv/helix/games?' + QUERY,
         {
             "headers": {
-                "Client-ID": CLIENT_ID,
-                "Authorization": "Bearer " + ACCESS_TOKEN
+                "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
+                "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
             }
         }
     )
     .then(resp => resp.json())
     .then(resp => {
-        let data = resp.data[0]
-        for(var key in data){
-            console.log(`${key} - ${data[key]}`)
+		resp.length
+        console.log('success!')
+        // console.log(resp)
+        console.log(resp.data[0])
+        let gameDetails = resp.data
+        for(const game in gameDetails){
+            let xstreamer = gameInfo[gameDetails[game].id]
+            console.log(xstreamer)
+            let boxArtURL = gameDetails[game].box_art_url.replace("{width}x{height}",'64x64')
+            console.log(boxArtURL)
+            streamers.value[xstreamer]['game_art'] = boxArtURL
         }
-        console.log(`game name: ${data['name']}`)
-        if(streamer){
-            streamers.value[streamer]['game_name'] = data['name'];
-        }
-        return data['name'];
     })
     .catch(err => {
-        console.log('Error in getGameName')
+        console.log('error!')
         console.log(err);
     });
 }
+
+
+
+
 
 function parseStartTime(startedAt){
     let minutes = parseInt((Date.parse(new Date().toUTCString()) - Date.parse(startedAt)) / 60000)
@@ -211,6 +275,7 @@ function refreshStreams(){
         console.log('listener on')
         if(navigator.onLine) {
             getStreamInfo()
+            getChannelInfo()
         }
         glitchLogoOnce.value = true
         setTimeout(() => glitchLogoOnce.value = false, 3000); 
@@ -243,3 +308,34 @@ export{
     refreshStreams,
     parseStartTime
 }
+
+
+
+
+
+
+
+
+// fetch(
+//     'https://api.twitch.tv/helix/streams?user_login=lilypichu&user_login=pokimane&user_login=scarra&user_login=michaelreeeves&user_login=DisguisedToast&user_login=shiphtur&',
+//     {
+//         "headers": {
+//             "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
+//             "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
+//         }
+//     }
+// )
+// .then(resp => resp.json())
+// .then(resp => {
+//     resp.length
+//     console.log('success!')
+//     console.log(resp)
+//     console.log(resp.data[0])
+//     for(var key in resp.data[0]){
+//         console.log(`${key} - ${resp.data[0][key]}`)
+//     }
+// })
+// .catch(err => {
+//     console.log('error!')
+//     console.log(err);
+// });

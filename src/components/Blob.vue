@@ -12,7 +12,7 @@
 
 <script>
 import {isLoggedIn} from '../store/state'
-import {authorizePublic} from '../scripts/twitch_implicit_auth'
+import {authorizePublic} from '../scripts/twitch'
 
 export default {
   setup(){
