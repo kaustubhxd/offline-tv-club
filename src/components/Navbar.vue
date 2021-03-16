@@ -4,37 +4,15 @@
       <li class="logo">
         <a href="#" class="nav-link expand-nav" @click="navExpandToggle()">
           <span class="link-text logo-text" :style="{left: sideNavState.leftNavExpand? '0px':'-999px'}">Members</span>
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="angle-double-right"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-            :style="{marginLeft : sideNavState.leftNavExpand? '12rem':'1.5rem', transform: sideNavState.leftNavExpand? 'rotate(-180deg)':'rotate(0deg)'}"
-          >
-            <g class="fa-group">
-              <path
-                fill="currentColor"
-                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                class="fa-secondary"
-              ></path>
-              <path
-                fill="currentColor"
-                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
+          <img id='expand-arrow' :src="require('../assets/icons/expand.svg')" 
+              :style="{marginLeft : sideNavState.leftNavExpand? '12rem':'1.5rem', transform: sideNavState.leftNavExpand? 'rotate(-180deg)':'rotate(0deg)'}">
         </a>
       </li>
 
-        <li class="nav-item" v-for='(streamer,streamer_id) in streamers' :key='streamer' @contextmenu.prevent="streamerContextEvent($event, streamer_id)" :title="streamer_id">
+        <li class="nav-item" v-for='(streamer,streamer_id) in otvCore' :key='streamer' @contextmenu.prevent="streamerContextEvent($event, streamer_id)" :title="streamer_id">
           <a href="#" class="nav-link">
             <div class="avatar-container">
-              <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" :style="{filter: streamer.isLive? 'opacity(1)' : 'opacity(0.5)'}">
+              <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" >
               <LiveIcon :streamer='streamer_id'/>
             </div>
             <div class="streamer-details">
@@ -48,7 +26,7 @@
 </template>
 
 <script>
-import {streamers} from '../data/streamers'
+import {otvCore} from '../data/streamers'
 import {sideNavState} from '../store/state'
 import LiveIcon from './LiveIcon'
 import {streamerContextEvent} from '../scripts/handleEvents'
@@ -64,7 +42,7 @@ export default {
     }
 
     return {
-      streamers,
+      otvCore,
       sideNavState,
       streamerContextEvent,
       navExpandToggle
@@ -142,12 +120,6 @@ body::-webkit-scrollbar-thumb {
   margin-left: 1rem;
 }
 
-.nav-link svg {
-  width: 1.5rem;
-  min-width: .5rem;
-  margin: 0 1.5rem;
-}
-
 .fa-primary {
   color: #ff7eee;
 }
@@ -169,11 +141,6 @@ body::-webkit-scrollbar-thumb {
   font-size: 1.5rem;
   /* letter-spacing: 0.3ch; */
   width: 100%;
-}
-
-.logo svg {
-  transform: rotate(0deg);
-  transition: var(--transition-speed);
 }
 
 .logo-text
@@ -269,8 +236,12 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-// .member-streams{
-//   overflow-y: auto;
-//   overflow-x: hidden  ;
-// }
+#expand-arrow{
+  width: 1.5rem;
+  min-width: .5rem;
+  margin: 0 1rem;
+
+  transform: rotate(0deg);
+  transition: var(--transition-speed);
+}
 </style>

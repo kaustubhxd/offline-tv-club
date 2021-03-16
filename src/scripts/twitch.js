@@ -1,4 +1,3 @@
-import { markRaw } from '@vue/reactivity';
 import {streamers} from '../data/streamers'
 import {isLoggedIn,glitchLogoOnce,profileCard} from '../store/state'
 
@@ -133,7 +132,7 @@ async function getStreamInfo (){
             // console.log(resp.data.length)
             if(resp.data.length){
                 let response = resp.data
-                // console.log(response)
+                console.log(response)
                 // https://stackoverflow.com/a/16626758
                 response.forEach((xstreamer, index, wholeArray) => {
                     // console.log(xstreamer)
@@ -318,6 +317,33 @@ export{
 
 // fetch(
 //     'https://api.twitch.tv/helix/streams?user_login=lilypichu&user_login=pokimane&user_login=scarra&user_login=michaelreeeves&user_login=DisguisedToast&user_login=shiphtur&',
+//     {
+//         "headers": {
+//             "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
+//             "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
+//         }
+//     }
+// )
+// .then(resp => resp.json())
+// .then(resp => {
+//     resp.length
+//     console.log('success!')
+//     console.log(resp)
+//     console.log(resp.data[0])
+//     for(var key in resp.data[0]){
+//         console.log(`${key} - ${resp.data[0][key]}`)
+//     }
+// })
+// .catch(err => {
+//     console.log('error!')
+//     console.log(err);
+// });
+
+
+// get streamer info
+
+// fetch(
+//     'https://api.twitch.tv/helix/users?login=lilypichu&login=pokimane&login=scarra&login=michaelreeeves&login=DisguisedToast',
 //     {
 //         "headers": {
 //             "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",

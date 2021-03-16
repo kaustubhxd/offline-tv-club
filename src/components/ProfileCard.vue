@@ -7,7 +7,7 @@
             <span class="activity" ancestor="card" v-show="profileCard.isLive">
                 <div class="activity-image" ancestor="card" :style="{backgroundImage: profileCard.activityImage === ''? '' : 'url(' + profileCard.activityImage + ')'}"></div> 
                 <div class='activity-details' ancestor="card">
-                    <div class="activity-name" ancestor="card" :title='profileCard.activityTitle'>{{ profileCard.activityTitle }}</div>
+                    <div class="activity-name" ancestor="card" :title='profileCard.activityTitle === "" ? "Just Chatting" : profileCard.activityTitle'>{{ profileCard.activityTitle === "" ? "Just Chatting" : profileCard.activityTitle }}</div>
                     <div class="activity-time" ancestor="card" :title='profileCard.activityTime'>{{ profileCard.activityTime }}</div>
                 </div>
             </span>
@@ -42,6 +42,9 @@ export default {
         border: 1px solid #df4973;
         transition: left 150ms ease;
 
+        &:focus{
+            animation: card-slide-down .3s ease-out;
+        }
 
         .status{
             display: flex;

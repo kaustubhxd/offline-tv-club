@@ -3,38 +3,18 @@
     <ul class="navbar-nav">
       <li class="logo">
         <a href="#" class="nav-link expand-nav" @click="navExpandToggle()">
-         <span class="link-text logo-text" :style="{left: sideNavState.rightNavExpand? '7rem':'999px'}">Friends</span>
+        <img id='expand-arrow' :src="require('../assets/icons/expand.svg')" 
+              :style="{transform: sideNavState.rightNavExpand? 'rotate(0deg)':'rotate(-180deg)'}">
+         <span class="link-text logo-text" :style="{left: sideNavState.rightNavExpand? '5rem':'999px'}">Friends</span>
 
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="angle-double-right"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-            :style="{marginRight : sideNavState.rightNavExpand? '11rem':'1.5rem', transform: sideNavState.rightNavExpand? 'rotate(0deg)':'rotate(-180deg)'}"
-          >
-            <g class="fa-group">
-              <path
-                fill="currentColor"
-                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                class="fa-secondary"
-              ></path>
-              <path
-                fill="currentColor"
-                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
         </a>
       </li>
-      <!-- <li class="nav-item" v-for='(streamer,streamer_id) in streamers' :key='streamer' @contextmenu.prevent="streamerContextEvent($event, streamer_id)" :title="streamer_id">
+
+        <li class="nav-item" v-for='(streamer,streamer_id) in otvFriends' :key='streamer' @contextmenu.prevent="streamerContextEvent($event, streamer_id)" :title="streamer_id">
           <a href="#" class="nav-link">
             <div class="avatar-container">
-              <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" :style="{filter: streamer.isLive? 'opacity(1)' : 'opacity(0.5)'}">
+            <div class="avatar" :style="{backgroundImage: streamer.thumbnailURL === ''? '' : 'url(' + streamer.thumbnailURL + ')'}">
+            </div>
               <LiveIcon :streamer='streamer_id'/>
             </div>
             <div class="streamer-details">
@@ -42,17 +22,21 @@
               <span class="streamer-game">{{streamer['game_name']}}</span>
             </div>        
           </a>
-        </li> -->
+        </li>
+
+
     </ul>
   </nav>
 </template>
 
 <script>
-import {streamers} from '../data/streamers'
+import {otvFriends} from '../data/streamers'
 import {sideNavState} from '../store/state'
 import {streamerContextEvent} from '../scripts/handleEvents'
+import LiveIcon from './LiveIcon'
 
 export default {
+  components : {LiveIcon},
   setup(){
     
     function navExpandToggle(){
@@ -62,7 +46,7 @@ export default {
     }
 
     return {
-      streamers,
+      otvFriends,
       sideNavState,
       navExpandToggle,
       streamerContextEvent
@@ -71,7 +55,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
 
 body {
   color: black;
@@ -114,13 +98,14 @@ body::-webkit-scrollbar-thumb {
 
 .nav-item {
   width: 100%;
+  font-size : 14px;
 }
 
 
 .nav-link {
   display: flex;
   align-items: center;
-  height: 5rem;
+  height: 3rem;
   color: var(--text-primary);
   text-decoration: none;
   /* filter: grayscale(100%) opacity(0.7); */
@@ -136,12 +121,6 @@ body::-webkit-scrollbar-thumb {
 .link-text {
   display: none;
   margin-left: 1rem;
-}
-
-.nav-link svg {
-  width: 1.5rem;
-  min-width: .5rem;
-  margin: 0 1.5rem;
 }
 
 .fa-primary {
@@ -165,11 +144,6 @@ body::-webkit-scrollbar-thumb {
   font-size: 1.5rem;
   /* letter-spacing: 0.3ch; */
   width: 100%;
-}
-
-.logo svg {
-  transform: rotate(0deg);
-  transition: var(--transition-speed);
 }
 
 .logo-text
@@ -261,5 +235,27 @@ body::-webkit-scrollbar-thumb {
 
 .expand-nav{
   height: 4rem;
+}
+
+.avatar-container{
+  margin-left: 0.5rem;
+  
+  .avatar{
+      width: 2rem;
+      height: 2rem;
+      margin: 5% auto;
+      border-radius: 50%;
+      background-size: cover;
+      border: 1px solid rgb(35, 35, 46);
+  }
+}
+
+#expand-arrow{
+  width: 1.5rem;
+  min-width: .5rem;
+  margin: 0 1rem;
+
+  transform: rotate(0deg);
+  transition: var(--transition-speed);
 }
 </style>

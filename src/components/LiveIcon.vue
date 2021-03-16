@@ -22,9 +22,9 @@ export default {
 
 <style lang='scss' scoped>
  .is-live{
-    position: absolute; 
+    position: relative; 
     bottom:10px; 
-    right:0;
+    left : 95%;
     width: 5px;
     height: 5px;
 
@@ -42,17 +42,17 @@ export default {
       animation: live-pulse 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
     }
 
-    &:after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      background-color: #75daad;
-      border-radius: 50px;
-      animation: live-circle 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
-    }
+    // &:after {
+    //   content: "";
+    //   position: absolute;
+    //   left: 0;
+    //   top: 0;
+    //   display: block;
+    //   width: 100%;
+    //   height: 100%;
+    //   background-color: #75daad;
+    //   border-radius: 50px;
+    //   animation: live-circle 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+    // }
   }
 </style>

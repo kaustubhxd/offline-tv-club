@@ -7,9 +7,9 @@ const sideNavState = ref({
     leftWidth       : '5rem',
 
     rightNavExpand  : false,
-    rightWidth       : '5rem',
-    rightOpenWidth   : '15rem',
-    rightCloseWidth  : '5rem',
+    rightWidth       : '3.5rem',
+    rightOpenWidth   : '13rem',
+    rightCloseWidth  : '3.5rem',
 
 })
 

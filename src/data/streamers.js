@@ -68,10 +68,10 @@ const streamers = ref({
         view_count  :   '',
         timestamp : ''
     },
-    'kristoferyee' : {
+    'disguisedtoast' : {
         id          :   87204022,
         display_name:   'DisguisedToast',
-        channel_name:   'kristoferyee',
+        channel_name:   'disguisedtoast',
         avatar_name :   'toast.png',
         platform    :   'Facebook',
         isLive      :   false,
@@ -85,10 +85,10 @@ const streamers = ref({
         view_count  :   '',
         timestamp : ''
     },
-    'shiphtur' : {
+    'yvonnie' : {
         id          :   2506,
         display_name:   'Yvonnie',
-        channel_name:   'shiphtur',
+        channel_name:   'yvonnie',
         avatar_name :   'yvonne.png',
         isLive      :   false,
         thumbnailURL:  '',
@@ -101,9 +101,137 @@ const streamers = ref({
         view_count  :   '',
         timestamp : ''
     },
-
+    'ludwig' : {
+        id          :   40934651,
+        display_name:   'Ludwig',
+        channel_name:   'ludwig',
+        avatar_name :   'NA',
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   false,
+        game_id     :   0,
+        game_name   :   '',
+        game_art    :   '',
+        title       :   '',
+        offlineTitle:   'Making Mogul moves off stream',
+        view_count  :   '',
+        timestamp : ''
+    },
+    'quarterjade' : {
+        id          :   173758090,
+        display_name:   'QuarterJade',
+        channel_name:   'quarterjade',
+        avatar_name :   'NA',
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   false,
+        game_id     :   0,
+        game_name   :   '',
+        game_art    :   '',
+        title       :   '',
+        offlineTitle:   'Busy playing with Genji',
+        view_count  :   '',
+        timestamp : ''
+    },
+    'masayoshi' : {
+        id          :   46673989,
+        display_name:   'Masayoshi',
+        channel_name:   'masayoshi',
+        avatar_name :   'NA',
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   false,
+        game_id     :   0,
+        game_name   :   '',
+        game_art    :   '',
+        title       :   '',
+        offlineTitle:   'Busy playing with Genji',
+        view_count  :   '',
+        timestamp : ''
+    },
+    'starsmitten' : {
+        id          :   61852275,
+        display_name:   'Starsmitten',
+        channel_name:   'starsmitten',
+        avatar_name :   'NA',  
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   false,
+        game_id     :   0,
+        game_name   :   '',
+        game_art    :   '',
+        title       :   '',
+        offlineTitle:   'Microwaving poptarts. Want one?',
+        view_count  :   '',
+        timestamp : ''
+    },
+    'xchocobars' : {
+        id          :   42583390,
+        display_name:   'xChocoBars',
+        channel_name:   'xchocobars',
+        avatar_name :   'NA',  
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   false,
+        game_id     :   0,
+        game_name   :   '',
+        game_art    :   '',
+        title       :   '',
+        offlineTitle:   'Microwaving poptarts. Want one?',
+        view_count  :   '',
+        timestamp : ''
+    },
+    'sykkuno' : {
+        id          :   26154978,
+        display_name:   'Sykkuno',
+        channel_name:   'sykkuno',
+        avatar_name :   'NA',  
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   false,
+        game_id     :   0,
+        game_name   :   '',
+        game_art    :   '',
+        title       :   '',
+        offlineTitle:   'Microwaving poptarts. Want one?',
+        view_count  :   '',
+        timestamp : ''
+    },
+    'tinakitten' : {
+        id          :   42032495,
+        display_name:   'TinaKitten',
+        channel_name:   'tinakitten',
+        avatar_name :   'NA',  
+        isLive      :   false,
+        thumbnailURL:  '',
+        isOTVMember :   false,
+        game_id     :   0,
+        game_name   :   '',
+        game_art    :   '',
+        title       :   '',
+        offlineTitle:   'Microwaving poptarts. Want one?',
+        view_count  :   '',
+        timestamp : ''
+    },
 }); 
 
+
+
+// https://stackoverflow.com/a/60548518
+const otvCore = ref(Object.fromEntries(
+    Object.entries(streamers.value).slice(0, 6)
+))
+
+const otvFriends = ref(Object.fromEntries(
+    Object.entries(streamers.value).slice(6, )
+))
+
+console.log(otvCore.value.pokimane.display_name)
+console.log(streamers.value.pokimane.display_name)
+
+
 export {
-    streamers
+    streamers,
+    otvCore,
+    otvFriends
 }
