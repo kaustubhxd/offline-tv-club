@@ -49,7 +49,7 @@ header {
 
   height: 3rem;
 
-  position: fixed; /* Added for making nav sticky */
+  position: sticky; /* Added for making nav sticky */
   display: block;
   min-width: auto;
   top: 0; /* Added for making nav sticky */
@@ -84,7 +84,7 @@ main {
 }
 
 .nav__links li a:hover {
-  color: #df49a6;
-}
+  color: #d7426b;
+  }
 
 </style>

@@ -10,18 +10,23 @@
         </a>
       </li>
 
-        <li class="nav-item" v-for='(streamer,streamer_id) in otvFriends' :key='streamer' @contextmenu.prevent="streamerContextEvent($event, streamer_id)" :title="streamer_id">
-          <a href="#" class="nav-link">
-            <div class="avatar-container">
-            <div class="avatar" :style="{backgroundImage: streamer.thumbnailURL === ''? '' : 'url(' + streamer.thumbnailURL + ')'}">
-            </div>
-              <LiveIcon :streamer='streamer_id'/>
-            </div>
-            <div class="streamer-details">
-              <span class="streamer-name">{{streamer['display_name']}}</span>
-              <span class="streamer-game">{{streamer['game_name']}}</span>
-            </div>        
-          </a>
+        <li class="nav-item" v-for='(streamer,streamer_id) in otvFriends' :key='streamer' :title="streamer_id"
+          @contextmenu.prevent="streamerContextEvent($event, streamer_id)" 
+          @mousedown.stop.left="watchLivestream($event,streamer['channel_name'],streamer.isLive)">
+            <a href="#" class="nav-link">
+              <div class="avatar-container">
+              <div class="avatar" :style="{backgroundImage: streamer.thumbnailURL === ''? '' : 'url(' + streamer.thumbnailURL + ')'}">
+              </div>
+                <LiveIcon :streamer='streamer_id'/>
+              </div>
+              <div class="streamer-details">
+                <div class="streamer-who-what">
+                    <span class="streamer-name">{{streamer['display_name']}}</span>
+                    <span class="streamer-game">{{streamer['game_name']}}</span>
+                </div>
+                <HeartIcon :streamer='streamer["channel_name"]'/>
+              </div>        
+            </a>
         </li>
 
 
@@ -31,12 +36,14 @@
 
 <script>
 import {otvFriends} from '../data/streamers'
-import {sideNavState} from '../store/state'
+import {sideNavState, twitchPlayer} from '../store/state'
 import {streamerContextEvent} from '../scripts/handleEvents'
 import LiveIcon from './LiveIcon'
+import HeartIcon from './HeartIcon'
+
 
 export default {
-  components : {LiveIcon},
+  components : {LiveIcon, HeartIcon},
   setup(){
     
     function navExpandToggle(){
@@ -45,11 +52,19 @@ export default {
                                           sideNavState.value.rightOpenWidth : sideNavState.value.rightCloseWidth
     }
 
+    function watchLivestream(e,streamer,isLive){
+      console.log(e.target.className)
+      if(e.target.className != 'heart-click'){
+        twitchPlayer.value.channel = streamer
+      }
+    }
+
     return {
       otvFriends,
       sideNavState,
       navExpandToggle,
-      streamerContextEvent
+      streamerContextEvent,
+      watchLivestream
     }
   }
 }
@@ -227,11 +242,22 @@ body::-webkit-scrollbar-thumb {
   margin-left : 5px;
 }
 
+
 .streamer-details{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.streamer-who-what{
   margin-left: 1rem;
   display: flex;
   flex-direction: column;
 }
+
+
 
 .expand-nav{
   height: 4rem;

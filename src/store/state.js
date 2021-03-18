@@ -28,12 +28,22 @@ const profileCard = ref({
     top : '5rem',
 
     avatar    : '',
-    streamer  : 'Michael Reeves',
-    title     : 'Valorant today w/OfflineTV',
+    streamer  : '',
+    title     : '',
     
     activityImage  :   '',
-    activityTitle  :    'Pirates of the Carribean',
-    activityTime   :   'Since 15 mins',
+    activityTitle  :    '',
+    activityTime   :   '',
+    activityViewers : 0,
+})
+
+const homeState = ref({
+    width : 300,
+    height : 300,
+})
+
+const twitchPlayer = ref({
+    channel : ''
 })
 
 export {
@@ -41,7 +51,9 @@ export {
     isLoggedIn,
     glitchLogoOnce,
     profileCard,
-    navBarLeft
+    navBarLeft,
+    homeState,
+    twitchPlayer
 }
 
 

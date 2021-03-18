@@ -1,9 +1,11 @@
 <template>
-  <Header/>
-  <div class='main-container'>
-    <Navbar/>
-    <Home/>
-    <NavbarRight/>
+  <div class="main-container">
+    <Header/>
+    <div class='the-content'>
+      <Navbar/>
+      <Home/>
+      <NavbarRight/>
+    </div>  
   </div>
 </template>
 
@@ -33,11 +35,10 @@ export default {
   display: flex;
   flex-direction: column;
   min-width: auto;
-  padding-top: 3rem;
 }
 
 
-.main-container{
+.the-content{
   display: flex;
   width: 100%;
   justify-content: space-between;

@@ -239,7 +239,7 @@ async function getGameThumbnails(gameInfo){
         for(const game in gameDetails){
             let xstreamer = gameInfo[gameDetails[game].id]
             console.log(xstreamer)
-            let boxArtURL = gameDetails[game].box_art_url.replace("{width}x{height}",'64x64')
+            let boxArtURL = gameDetails[game].box_art_url.replace("{width}x{height}",'256x256')
             console.log(boxArtURL)
             streamers.value[xstreamer]['game_art'] = boxArtURL
         }
@@ -300,6 +300,8 @@ function refreshStreams(){
     }
 }
 
+
+
 export{
     authorizePublic,
     parseAccessToken,
@@ -309,7 +311,36 @@ export{
 }
 
 
-
+// async function getGameThumbnails(gameInfo){
+//     await fetch(
+//         'https://api.twitch.tv/helix/games?' + QUERY,
+//         {
+//             "headers": {
+//                 "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
+//                 "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
+//             }
+//         }
+//     )
+//     .then(resp => resp.json())
+//     .then(resp => {
+// 		resp.length
+//         console.log('success!')
+//         // console.log(resp)
+//         console.log(resp.data[0])
+//         let gameDetails = resp.data
+//         for(const game in gameDetails){
+//             let xstreamer = gameInfo[gameDetails[game].id]
+//             console.log(xstreamer)
+//             let boxArtURL = gameDetails[game].box_art_url.replace("{width}x{height}",'256x256')
+//             console.log(boxArtURL)
+//             streamers.value[xstreamer]['game_art'] = boxArtURL
+//         }
+//     })
+//     .catch(err => {
+//         console.log('error!')
+//         console.log(err);
+//     });
+// }
 
 
 
@@ -365,3 +396,5 @@ export{
 //     console.log('error!')
 //     console.log(err);
 // });
+
+// 482860433

@@ -17,7 +17,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'Busy petting Temmie 🌸',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'pokimane' : {
         id          :   44445592,
@@ -33,7 +34,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'See you soon! ^_^',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'scarra' : {
         id          :   22253819,
@@ -49,7 +51,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'Reading some novel',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'michaelreeves' : {
         id          :   469790580,
@@ -66,7 +69,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   `Temmie ate the stream key, I'll be back eventually...`,
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'disguisedtoast' : {
         id          :   87204022,
@@ -83,7 +87,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   `I stream on Facebook.`,
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'yvonnie' : {
         id          :   2506,
@@ -99,7 +104,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'Grinding LoL probably',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'ludwig' : {
         id          :   40934651,
@@ -115,7 +121,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'Making Mogul moves off stream',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'quarterjade' : {
         id          :   173758090,
@@ -131,7 +138,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'Busy playing with Genji',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'masayoshi' : {
         id          :   46673989,
@@ -147,7 +155,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'Busy playing with Genji',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'starsmitten' : {
         id          :   61852275,
@@ -163,7 +172,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'Microwaving poptarts. Want one?',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'xchocobars' : {
         id          :   42583390,
@@ -179,7 +189,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'Microwaving poptarts. Want one?',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'sykkuno' : {
         id          :   26154978,
@@ -195,7 +206,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'Microwaving poptarts. Want one?',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
     'tinakitten' : {
         id          :   42032495,
@@ -211,7 +223,8 @@ const streamers = ref({
         title       :   '',
         offlineTitle:   'Microwaving poptarts. Want one?',
         view_count  :   '',
-        timestamp : ''
+        timestamp : '',
+        isFollowed: false,
     },
 }); 
 

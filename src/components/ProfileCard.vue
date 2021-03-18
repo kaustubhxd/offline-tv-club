@@ -5,10 +5,13 @@
             <div class="name" ancestor="card" :title="profileCard.streamer">{{ profileCard.streamer }}</div>
             <div class="title" ancestor="card" :title="profileCard.title">{{ profileCard.title }}</div>
             <span class="activity" ancestor="card" v-show="profileCard.isLive">
-                <div class="activity-image" ancestor="card" :style="{backgroundImage: profileCard.activityImage === ''? '' : 'url(' + profileCard.activityImage + ')'}"></div> 
+                <div class="activity-image" ancestor="card" :style="{backgroundImage: profileCard.activityTitle === '' ?  `url('https://static-cdn.jtvnw.net/ttv-boxart/Just%20Chatting-128x128.jpg')`  : 'url(' + profileCard.activityImage + ')'}"></div> 
                 <div class='activity-details' ancestor="card">
-                    <div class="activity-name" ancestor="card" :title='profileCard.activityTitle === "" ? "Just Chatting" : profileCard.activityTitle'>{{ profileCard.activityTitle === "" ? "Just Chatting" : profileCard.activityTitle }}</div>
-                    <div class="activity-time" ancestor="card" :title='profileCard.activityTime'>{{ profileCard.activityTime }}</div>
+                    <div class="activity-name" ancestor="card" :title='profileCard.activityTitle === "" ? "Just Chatting" : profileCard.activityTitle'>{{ profileCard.activityTitle === "" ? "Just Chatting?" : profileCard.activityTitle }}</div>
+                    <div class="activity-how-many">
+                        <div class="activity-time" ancestor="card" :title='profileCard.activityTime'>{{ profileCard.activityTime }}</div>
+                        <div class="activity-viewers" ancestor="card" :title='profileCard.activityViewers'>👁️{{ profileCard.activityViewers.toString() }}K</div>
+                    </div>
                 </div>
             </span>
         </div>
@@ -101,18 +104,32 @@ export default {
                     margin: auto;
                     overflow: auto;
                     
+                    
                     // https://stackoverflow.com/questions/15292708/text-overflow-css-truncation
                     .activity-name{
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         overflow: hidden;
                     }
-                    
-                    .activity-time{
-                        font-family: 'Open Sans','sans serif';
-                        font-weight: 300;
-                        font-size: 14px;
+
+                    .activity-how-many{
+                        display : flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+
+                        .activity-time{
+                            font-family: 'Open Sans','sans serif';
+                            font-weight: 300;
+                            font-size: 14px;
+                        }
+
+                        .activity-viewers{
+                            font-family: 'Open Sans','sans serif';
+                            font-weight: 400;
+                            font-size: 14px;                        }
                     }
+                    
+
                 }
             }
         }

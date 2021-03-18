@@ -1,5 +1,6 @@
 import {profileCard,sideNavState} from '../store/state'
 import {streamers} from '../data/streamers'
+import { computed } from '@vue/runtime-core'
 
 
 function leftClickEvent(e){
@@ -29,11 +30,11 @@ function streamerContextEvent(e,streamer){
     profileCard.value.streamer = streamers.value[streamer]['display_name']
     profileCard.value.avatar = streamers.value[streamer].thumbnailURL
     if(profileCard.value.isLive){
+        profileCard.value.title = streamers.value[streamer].title
         profileCard.value.activityTitle = streamers.value[streamer]['game_name']
         profileCard.value.activityTime = streamers.value[streamer].timestamp
         profileCard.value.activityImage = streamers.value[streamer].game_art
-        console.log(profileCard.value.activityImage)
-        profileCard.value.title = streamers.value[streamer].title
+        profileCard.value.activityViewers =  computed(() => (streamers.value[streamer].view_count / 1000).toFixed(1)) 
     }else{
         profileCard.value.title = streamers.value[streamer].offlineTitle
     }
