@@ -46,6 +46,14 @@ const twitchPlayer = ref({
     channel : ''
 })
 
+const ytPlayer = ref({
+    channel : ''
+})
+
+const fbPlayer = ref({
+    channel : ''
+})
+
 export {
     sideNavState,
     isLoggedIn,
@@ -53,7 +61,9 @@ export {
     profileCard,
     navBarLeft,
     homeState,
-    twitchPlayer
+    twitchPlayer,
+    ytPlayer,
+    fbPlayer
 }
 
 

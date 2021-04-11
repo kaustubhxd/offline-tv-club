@@ -30,9 +30,9 @@
 
 <script>
 import {otvCore} from '../data/streamers'
-import {sideNavState,twitchPlayer} from '../store/state'
+import {sideNavState} from '../store/state'
 import LiveIcon from './LiveIcon'
-import {streamerContextEvent} from '../scripts/handleEvents'
+import {streamerContextEvent,pullUpLivestream} from '../scripts/handleEvents'
 
 export default {
   components : {LiveIcon},
@@ -44,9 +44,9 @@ export default {
                                           sideNavState.value.leftOpenWidth : sideNavState.value.leftCloseWidth
     }
 
-    function watchLivestream(e,streamer,isLive){
+    function watchLivestream(e,streamer){
       console.log(e.target.className)
-        twitchPlayer.value.channel = streamer
+        pullUpLivestream('twitch',streamer)
     }
 
     return {

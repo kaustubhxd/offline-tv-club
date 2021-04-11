@@ -41,7 +41,7 @@
 <script>
 import {otvFriends} from '../data/streamers'
 import {sideNavState, twitchPlayer} from '../store/state'
-import {streamerContextEvent} from '../scripts/handleEvents'
+import {streamerContextEvent,pullUpLivestream} from '../scripts/handleEvents'
 import LiveIcon from './LiveIcon'
 import HeartIcon from './HeartIcon'
 
@@ -56,10 +56,10 @@ export default {
                                           sideNavState.value.rightOpenWidth : sideNavState.value.rightCloseWidth
     }
 
-    function watchLivestream(e,streamer,isLive){
+    function watchLivestream(e,streamer){
       console.log(e.target.className)
       if(e.target.className != 'heart-click'){
-        twitchPlayer.value.channel = streamer
+        pullUpLivestream('twitch',streamer)
       }
     }
 

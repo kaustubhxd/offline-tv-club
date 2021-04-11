@@ -1,15 +1,29 @@
 <template>
-  <a href="#" class="glitch" :class="{'glitch-once' : glitchLogoOnce}">オフラインテレビ</a>
+  <a href="#" class="glitch" 
+    :class="{'glitch-once' : glitchLogoOnce}"
+    @mouseup.left='logoClicked()'>オフラインテレビ</a>
 </template>
 
 <script>
 // https://codepen.io/DevchamploO/pen/QBWdqd  
 import {glitchLogoOnce} from '../store/state'
+import {twitchPlayer,ytPlayer} from '../store/state'
+import {pullUpLivestream} from '../scripts/handleEvents'
+
 
 export default {
   setup(){
+
+    function logoClicked(){
+      console.log('logo clicked')
+      twitchPlayer.value.channel = ''
+      // ytPlayer.value.channel = 'UCWxlUwW9BgGISaakjGM37aw'
+      pullUpLivestream('facebook','Chunky-111840363671221')
+    }
+
     return {
-      glitchLogoOnce
+      glitchLogoOnce,
+      logoClicked
     }
   }
 }

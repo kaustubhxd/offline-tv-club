@@ -1,4 +1,4 @@
-import {profileCard,sideNavState} from '../store/state'
+import {profileCard,sideNavState,twitchPlayer,ytPlayer,fbPlayer} from '../store/state'
 import {streamers} from '../data/streamers'
 import { computed } from '@vue/runtime-core'
 
@@ -62,9 +62,24 @@ function isSmartPhone(){
     };
 }
 
+function pullUpLivestream(provider,channel){
+    ytPlayer.value.channel = ''
+    twitchPlayer.value.channel = ''
+    fbPlayer.value.channel = ''
+
+    if( provider == 'youtube'){
+        ytPlayer.value.channel = channel
+    }else if(provider == 'twitch'){
+        twitchPlayer.value.channel = channel
+    }else if(provider == 'facebook'){
+        fbPlayer.value.channel = channel
+    }
+}
+
 export{ 
     leftClickEvent,
     streamerContextEvent,
     isSmartPhone,
+    pullUpLivestream
 }
 
