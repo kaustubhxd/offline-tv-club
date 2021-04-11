@@ -40,7 +40,7 @@
               .then(() => {
                 const options = {
                   width: '100%',
-                  height: window.innerHeight - 50,
+                  height: window.innerHeight - 90,
                   layout: 'video-with-chat'
                 };
       

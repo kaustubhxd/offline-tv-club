@@ -47,8 +47,24 @@ function positionContextCard(e){
     profileCard.value.left = parseInt(sideNavState.value.leftWidth) + 0.5 + 'rem'
 }
 
+
+
+function isSmartPhone(){
+    if(navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)) { 
+        return true;
+    }else{
+        return false;
+    };
+}
+
 export{ 
     leftClickEvent,
-    streamerContextEvent
+    streamerContextEvent,
+    isSmartPhone,
 }
 

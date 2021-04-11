@@ -29,7 +29,7 @@ export default {
 /* Parts are from twitter.com */
 
 .chest {
-  width: 10px;
+  width: 15px;
   position: relative;
   margin-right: 10px;    
 }

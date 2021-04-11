@@ -12,13 +12,21 @@
         <!-- <a class="cta" href="#">About</a> -->
     </div>
   </header>
-
 </template>
 
 <script scoped>
 import Logo from '../components/Logo'
+import {isSmartPhone} from '../scripts/handleEvents'
+
+
 export default {
-    components: {Logo}
+    components: {Logo},
+    setup(){
+
+      return{
+        isSmartPhone
+      }
+    }
 }
 </script>
 
@@ -49,7 +57,7 @@ header {
 
   height: 3rem;
 
-  position: sticky; /* Added for making nav sticky */
+  position: fixed; /* Added for making nav sticky */
   display: block;
   min-width: auto;
   top: 0; /* Added for making nav sticky */
@@ -85,6 +93,19 @@ main {
 
 .nav__links li a:hover {
   color: #d7426b;
+}
+
+@media only screen and (max-width: 600px) {
+  a{
+    font-size : 0.9rem;
   }
+  .nav__links li {
+    padding: 0 5px;
+  }
+
+  header{
+    padding-right: 0;
+  }
+}
 
 </style>

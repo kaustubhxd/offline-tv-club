@@ -58,4 +58,23 @@ export default {
 .glitch-once::before, .glitch-once::after {
 	animation: glitch .5s cubic-bezier(.25, .46, .45, .94) both;
 }
+
+@media only screen and (max-width: 600px) {
+  a{
+    font-size : 0.9rem;
+  }
+  .nav__links li {
+    padding: 0 5px;
+  }
+
+  header{
+    padding-right: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .glitch {
+    font-size : 1.1rem;
+  }
+}
 </style>

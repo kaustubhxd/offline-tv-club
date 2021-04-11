@@ -1,16 +1,19 @@
 <template>
   <nav class="navbar" :style="{width : sideNavState.rightWidth}">
-    <ul class="navbar-nav">
-      <li class="logo">
+    <div>
+            <div class="logo">
         <a href="#" class="nav-link expand-nav" @click="navExpandToggle()">
         <img id='expand-arrow' :src="require('../assets/icons/expand.svg')" 
               :style="{transform: sideNavState.rightNavExpand? 'rotate(0deg)':'rotate(-180deg)'}">
          <span class="link-text logo-text" :style="{left: sideNavState.rightNavExpand? '5rem':'999px'}">Friends</span>
 
         </a>
-      </li>
+      </div>
+    </div>
 
-        <li class="nav-item" v-for='(streamer,streamer_id) in otvFriends' :key='streamer' :title="streamer_id"
+    <smooth-scrollbar>
+    <div class="navbar-nav" :style="{height : navHeight }">
+        <button class="nav-item" v-for='(streamer,streamer_id) in otvFriends' :key='streamer' :title="streamer_id"
           @contextmenu.prevent="streamerContextEvent($event, streamer_id)" 
           @mousedown.stop.left="watchLivestream($event,streamer['channel_name'],streamer.isLive)">
             <a href="#" class="nav-link">
@@ -27,10 +30,11 @@
                 <HeartIcon :streamer='streamer["channel_name"]'/>
               </div>        
             </a>
-        </li>
+        </button>
 
 
-    </ul>
+    </div>
+    </smooth-scrollbar>
   </nav>
 </template>
 
@@ -64,7 +68,8 @@ export default {
       sideNavState,
       navExpandToggle,
       streamerContextEvent,
-      watchLivestream
+      watchLivestream,
+      navHeight : window.innerHeight - 50
     }
   }
 }
@@ -99,6 +104,9 @@ body::-webkit-scrollbar-thumb {
   transition: width 150ms ease;
   overflow: scroll;
   overflow : hidden;
+
+  top : 3rem;
+  height: calc(100vh - 3rem);
 }
 
 .navbar-nav {
@@ -109,6 +117,12 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
   align-items: center;
   height: 100%;
+
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 1rem;
 }
 
 .nav-item {
@@ -125,6 +139,7 @@ body::-webkit-scrollbar-thumb {
   text-decoration: none;
   /* filter: grayscale(100%) opacity(0.7); */
   transition: var(--transition-speed);
+  border-bottom: 1px solid #23232e;
 }
 
 .nav-link:hover {
@@ -152,7 +167,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .logo {
-  margin-bottom: 10px;
   text-align: center;
   color: var(--text-secondary);
   background: var(--bg-secondary);
@@ -175,11 +189,11 @@ body::-webkit-scrollbar-thumb {
 
 /* Large screens */
 @media only screen and (min-width: 600px) {
-  .navbar {
-    top: 0;
-    width: 5rem;
-    height: 100vh;
-  }
+  // .navbar {
+    // top: 0;
+    // width: 5rem;
+    // height: 100vh;
+  // }
 
   /* .navbar:hover {
     width: 16rem;
@@ -255,6 +269,7 @@ body::-webkit-scrollbar-thumb {
   margin-left: 1rem;
   display: flex;
   flex-direction: column;
+  text-align: start;
 }
 
 
@@ -283,5 +298,13 @@ body::-webkit-scrollbar-thumb {
 
   transform: rotate(0deg);
   transition: var(--transition-speed);
+}
+
+button{
+  align-items: center;
+  border: none;
+  padding: 0;
+  color: #fff;
+  background-color: #23232e;
 }
 </style>

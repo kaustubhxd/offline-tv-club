@@ -59,10 +59,13 @@ export default {
 
 <style lang='scss'>
 .container{
-    height: auto;
     width: 100%;
     padding     : 1rem;
     transition  : margin 150ms ease 0s;
+
+    position: relative;
+    top: 3rem;
+    height: calc(100vh - 3rem);
 }
 </style>
 

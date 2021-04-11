@@ -12,6 +12,10 @@ html, body {
     font-size: 16px;
 }
 
+// html{
+//   border-bottom: 1px solid #23232e;
+// }
+
 body{
     -webkit-touch-callout   :   none;
     -webkit-user-select     :   none;
@@ -21,7 +25,6 @@ body{
     user-select             :   none;
     background-color: #ececec;
 
-    // overflow : hidden;
 }
 
 
@@ -52,6 +55,31 @@ p,a{
     --bg-secondary: #141418;
     --transition-speed: 300ms;
   }
+
+  button{
+    align-items: center;
+    border: none;
+    padding: 0;
+    color: #fff;
+    background-color: #23232e;
+    text-align: start;
+  }
+
+
+  
+.scrollbar-track { 
+    background-color: rgb(35, 35, 46) !important;
+} 
+  
+.scrollbar-thumb, .scrollbar-thumb-y{
+    // background-color: rgb(116, 124, 132);
+    background: #141418 !important;
+    border: 1px solid #747c84;  
+}
+  
+
+
+
 
   @keyframes glitch {
     0% {

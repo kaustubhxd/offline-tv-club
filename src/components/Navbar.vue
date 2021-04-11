@@ -1,15 +1,18 @@
 <template>
   <nav class="navbar" :style="{width : sideNavState.leftWidth}">
-    <ul class="navbar-nav">
-      <li class="logo">
+    <div class="navbar-nav">
+      <div class="logo">
         <a href="#" class="nav-link expand-nav" @click="navExpandToggle()">
           <span class="link-text logo-text" :style="{left: sideNavState.leftNavExpand? '0px':'-999px'}">Members</span>
           <img id='expand-arrow' :src="require('../assets/icons/expand.svg')" 
               :style="{marginLeft : sideNavState.leftNavExpand? '12rem':'1.5rem', transform: sideNavState.leftNavExpand? 'rotate(-180deg)':'rotate(0deg)'}">
         </a>
-      </li>
+      </div>
 
-        <li class="nav-item" v-for='(streamer,streamer_id) in otvCore' :key='streamer' @contextmenu.prevent="streamerContextEvent($event, streamer_id)" :title="streamer_id">
+        <button class="nav-item" v-for='(streamer,streamer_id) in otvCore' :key='streamer' 
+         @contextmenu.prevent="streamerContextEvent($event, streamer_id)" :title="streamer_id"
+         @mousedown.stop.left="watchLivestream($event,streamer['channel_name'],streamer.isLive)"
+        >
           <a href="#" class="nav-link">
             <div class="avatar-container">
               <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" >
@@ -20,14 +23,14 @@
               <span class="streamer-game">{{streamer['game_name']}}</span>
             </div>        
           </a>
-        </li>
-    </ul>
+        </button>
+    </div>
   </nav>
 </template>
 
 <script>
 import {otvCore} from '../data/streamers'
-import {sideNavState} from '../store/state'
+import {sideNavState,twitchPlayer} from '../store/state'
 import LiveIcon from './LiveIcon'
 import {streamerContextEvent} from '../scripts/handleEvents'
 
@@ -41,11 +44,17 @@ export default {
                                           sideNavState.value.leftOpenWidth : sideNavState.value.leftCloseWidth
     }
 
+    function watchLivestream(e,streamer,isLive){
+      console.log(e.target.className)
+        twitchPlayer.value.channel = streamer
+    }
+
     return {
       otvCore,
       sideNavState,
       streamerContextEvent,
-      navExpandToggle
+      navExpandToggle,
+      watchLivestream
     }
   }
 }
@@ -81,6 +90,9 @@ body::-webkit-scrollbar-thumb {
   overflow: scroll;
   overflow : hidden;
   width: 5rem;
+
+  top : 3rem;
+  height: calc(100vh - 3rem);
 }
 
 .navbar-nav {
@@ -91,7 +103,7 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  height: max-content;
 }
 
 .nav-item {
@@ -155,13 +167,17 @@ body::-webkit-scrollbar-thumb {
   transform: rotate(-180deg);
 } */
 
+.streamer-details span{
+  font-size: 16px;
+}
+
 /* Large screens */
 @media only screen and (min-width: 600px) {
-  .navbar {
-    top: 0;
-    width: 5rem;
-    height: 100vh;
-  }
+  // .navbar {
+    // top: 0;
+    // width: 5rem;
+    // height: auto;
+  // }
 
 
   .navbar:hover .link-text {
