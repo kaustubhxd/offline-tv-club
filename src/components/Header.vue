@@ -9,18 +9,20 @@
                 <li><a href="#">Merch</a></li>
             </ul>
         </nav>
+        <Toggle/>
         <!-- <a class="cta" href="#">About</a> -->
     </div>
   </header>
 </template>
 
 <script scoped>
-import Logo from '../components/Logo'
+import Logo from './Logo'
+import Toggle from './Toggle'
 import {isSmartPhone} from '../scripts/handleEvents'
 
 
 export default {
-    components: {Logo},
+    components: {Logo,Toggle},
     setup(){
 
       return{
@@ -37,6 +39,9 @@ export default {
   padding: 0;
 }
 
+nav{
+  margin-left: auto;
+}
 
 li,
 a,
@@ -68,7 +73,6 @@ header {
 
 .header-content{
   display: flex;
-  justify-content: space-between;
 }
 
 main {
@@ -104,8 +108,20 @@ main {
   }
 
   header{
-    padding-right: 0;
+    padding: 0;
   }
+
+  
+  nav{
+    width:100%;
+  }
+  .nav__links{
+    display: flex;
+    justify-content: space-around;
+  }
+
 }
+
+
 
 </style>

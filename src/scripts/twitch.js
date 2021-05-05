@@ -96,6 +96,7 @@ function handleTwitchResponseErrors(code){
 }
 
 async function getStreamInfo (){
+    console.log('IN GET STREAM INFO')
     let QUERY = ''
     let gameInfo = {}
     for (var streamer in streamers.value){
@@ -137,13 +138,14 @@ async function getStreamInfo (){
                 response.forEach((xstreamer, index, wholeArray) => {
                     // console.log(xstreamer)
                     let streamer_name = xstreamer.user_login
-                    // console.log(streamer_name)
+                    console.log(streamer_name)
                     streamers.value[streamer_name]['isLive']         = xstreamer['type'] === 'live'
                     streamers.value[streamer_name]['title']          = xstreamer['title']
                     streamers.value[streamer_name]['game_id']        = xstreamer['game_id']
                     streamers.value[streamer_name]['game_name']      = xstreamer['game_name']
                     streamers.value[streamer_name]['timestamp']      = parseStartTime(xstreamer['started_at'])
                     streamers.value[streamer_name]['view_count']     = xstreamer['viewer_count']
+                    // streamers.value[streamer_name]['backgroundURL']  = xstreamer['thumbnail_url']
 
                     gameInfo[xstreamer['game_id']] = streamer_name
                 });
@@ -199,9 +201,19 @@ async function getChannelInfo(){
                 response.forEach((xstreamer, index, wholeArray) => {
                     // console.log(xstreamer)
                     let streamer_name = xstreamer.login
-                    // console.log(streamer_name)
+                    console.log(streamer_name)
                     if(streamers.value[streamer_name]){
                         streamers.value[streamer_name]['thumbnailURL']  = xstreamer['profile_image_url']
+                        streamers.value[streamer_name]['isLive']
+                        if(xstreamer['offline_image_url'] != ''){
+                            if(streamers.value[streamer_name].isLive){
+                                console.log(xstreamer)
+                                streamers.value[streamer_name]['backgroundURL'] = xstreamer['offline_image_url'].replace("{width}x{height}",'510x330')
+                            }else{
+                                streamers.value[streamer_name]['backgroundURL'] = xstreamer['offline_image_url'].replace(xstreamer['offline_image_url'].match(/([0-9]+[x][0-9]+)/)[0],'510x300')
+                            }
+                        }
+                        streamers.value[streamer_name]['offlineTitle']  = xstreamer['description']
                     }
                 });
             }

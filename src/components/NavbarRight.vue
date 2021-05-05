@@ -1,55 +1,79 @@
 <template>
   <nav class="navbar" :style="{width : sideNavState.rightWidth}">
     <div>
-            <div class="logo">
+        <div class="logo">
         <a href="#" class="nav-link expand-nav" @click="navExpandToggle()">
         <img id='expand-arrow' :src="require('../assets/icons/expand.svg')" 
               :style="{transform: sideNavState.rightNavExpand? 'rotate(0deg)':'rotate(-180deg)'}">
          <span class="link-text logo-text" :style="{left: sideNavState.rightNavExpand? '5rem':'999px'}">Friends</span>
-
         </a>
       </div>
     </div>
 
     <smooth-scrollbar>
-    <div class="navbar-nav" :style="{height : navHeight }">
-        <button class="nav-item" v-for='(streamer,streamer_id) in otvFriends' :key='streamer' :title="streamer_id"
-          @contextmenu.prevent="streamerContextEvent($event, streamer_id)" 
-          @mousedown.stop.left="watchLivestream($event,streamer['channel_name'],streamer.isLive)">
-            <a href="#" class="nav-link">
-              <div class="avatar-container">
-              <div class="avatar" :style="{backgroundImage: streamer.thumbnailURL === ''? '' : 'url(' + streamer.thumbnailURL + ')'}">
-              </div>
-                <LiveIcon :streamer='streamer_id'/>
-              </div>
-              <div class="streamer-details">
-                <div class="streamer-who-what">
-                    <span class="streamer-name">{{streamer['display_name']}}</span>
-                    <span class="streamer-game">{{streamer['game_name']}}</span>
+      <div class="navbar-nav" :style="{height : navHeight }">
+
+          <button class="nav-item" v-for='(streamer,streamer_id) in otvFriendsOnline' :key='streamer' :title="streamer_id"
+            @contextmenu.prevent="" 
+            @mouseup.stop="openProfileCard($event, streamer_id)" 
+            >
+            <!-- "watchLivestream($event,streamer['channel_name'],streamer.isLive)" -->
+              <a href="#" class="nav-link">
+                <div class="avatar-container">
+                <div class="avatar" :style="{backgroundImage: streamer.thumbnailURL === ''? '' : 'url(' + streamer.thumbnailURL + ')'}">
                 </div>
-                <HeartIcon :streamer='streamer["channel_name"]'/>
-              </div>        
-            </a>
-        </button>
+                  <LiveIcon :streamer='streamer_id'/>
+                </div>
+                <div class="streamer-details">
+                  <div class="streamer-who-what">
+                      <span class="streamer-name" :style="{color : streamer.isLive ? 'var(--text-online)' : 'var(--text-primary)'}" >{{streamer['display_name']}}</span>
+                      <span class="streamer-game" :style="{color : streamer.isLive ? 'var(--text-online)' : 'var(--text-primary)'}" >{{streamer['game_name']}}</span>
+                  </div>
+                  <HeartIcon :streamer='streamer["channel_name"]'/>
+                </div>
+              </a>
+          </button>
 
+          <div class="divider"></div>
 
-    </div>
+          <button class="nav-item" v-for='(streamer,streamer_id) in otvFriendsOffline' :key='streamer' :title="streamer_id"
+            @contextmenu.prevent="" 
+            @mouseup.stop="openProfileCard($event, streamer_id)" 
+            >
+            <!-- "watchLivestream($event,streamer['channel_name'],streamer.isLive)" -->
+              <a href="#" class="nav-link">
+                <div class="avatar-container">
+                <div class="avatar" :style="{backgroundImage: streamer.thumbnailURL === ''? '' : 'url(' + streamer.thumbnailURL + ')'}">
+                </div>
+                  <LiveIcon :streamer='streamer_id'/>
+                </div>
+                <div class="streamer-details">
+                  <div class="streamer-who-what">
+                      <span class="streamer-name" :style="{color : streamer.isLive ? 'var(--text-online)' : 'var(--text-primary)'}" >{{streamer['display_name']}}</span>
+                      <span class="streamer-game" :style="{color : streamer.isLive ? 'var(--text-online)' : 'var(--text-primary)'}" >{{streamer['game_name']}}</span>
+                  </div>
+                  <HeartIcon :streamer='streamer["channel_name"]'/>
+                </div>
+              </a>
+          </button>
+      </div>
     </smooth-scrollbar>
   </nav>
 </template>
 
 <script>
-import {otvFriends} from '../data/streamers'
-import {sideNavState, twitchPlayer} from '../store/state'
+import {streamers,otvFriends,otvFriendsOnline,otvFriendsOffline} from '../data/streamers'
+import {sideNavState} from '../store/state'
 import {streamerContextEvent,pullUpLivestream} from '../scripts/handleEvents'
 import LiveIcon from './LiveIcon'
 import HeartIcon from './HeartIcon'
+import { computed, ref, watch } from '@vue/runtime-core'
 
 
 export default {
   components : {LiveIcon, HeartIcon},
   setup(){
-    
+
     function navExpandToggle(){
       sideNavState.value.rightNavExpand =  !sideNavState.value.rightNavExpand;
         sideNavState.value.rightWidth = sideNavState.value.rightNavExpand ? 
@@ -63,13 +87,22 @@ export default {
       }
     }
 
+    function openProfileCard(e,streamer_id){
+      if(e.target.className != 'heart-click'){
+        streamerContextEvent(e, streamer_id,'right')
+      }
+    }
+
     return {
       otvFriends,
+      otvFriendsOnline,
+      otvFriendsOffline,
       sideNavState,
       navExpandToggle,
       streamerContextEvent,
       watchLivestream,
-      navHeight : window.innerHeight - 50
+      navHeight : window.innerHeight - 50,
+      openProfileCard
     }
   }
 }
@@ -119,10 +152,9 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
 
   width: 100%;
-  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-bottom: 1rem;
+  padding-bottom: 4rem;
 }
 
 .nav-item {
@@ -263,14 +295,16 @@ body::-webkit-scrollbar-thumb {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+    .streamer-who-what{
+      margin-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      text-align: start;
+    }
+
 }
 
-.streamer-who-what{
-  margin-left: 1rem;
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-}
 
 
 
@@ -307,4 +341,10 @@ button{
   color: #fff;
   background-color: #23232e;
 }
-</style>
+
+.divider{
+  margin: 1px 0;
+  border-bottom: 1px solid #323232;
+  width: 100%;
+}
+</style>  

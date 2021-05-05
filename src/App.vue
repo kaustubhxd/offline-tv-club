@@ -20,7 +20,7 @@ import {leftClickEvent, rightClickEvent} from './scripts/handleEvents'
 export default {
   components: {Header,Navbar,NavbarRight, Home},
   setup(){
-    document.addEventListener('click', (e) => {
+    document.addEventListener('mousedown', (e) => {
       // console.log('left-click')
       leftClickEvent(e)
 

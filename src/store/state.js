@@ -1,4 +1,4 @@
-import {ref} from 'vue';
+import {computed,ref} from 'vue';
 
 const sideNavState = ref({
     leftNavExpand   : false,
@@ -10,7 +10,6 @@ const sideNavState = ref({
     rightWidth       : '3.5rem',
     rightOpenWidth   : '13rem',
     rightCloseWidth  : '3.5rem',
-
 })
 
 const isLoggedIn = ref(false)
@@ -24,13 +23,15 @@ const navBarLeft = ref({
 const profileCard = ref({
     display : 'none',
     isLive  : false,
-    left: '20rem',
+    left: '0rem',
+    right: '0rem',
     top : '5rem',
 
     avatar    : '',
     streamer  : '',
     title     : '',
-    
+    backgroundURL : '',
+
     activityImage  :   '',
     activityTitle  :    '',
     activityTime   :   '',
@@ -54,6 +55,10 @@ const fbPlayer = ref({
     channel : ''
 })
 
+const isPlayerPlaying =  computed( () => (ytPlayer.value.channel !== '' || twitchPlayer.value.channel !== '' || fbPlayer.value.channel !== '') )
+
+
+
 export {
     sideNavState,
     isLoggedIn,
@@ -63,7 +68,8 @@ export {
     homeState,
     twitchPlayer,
     ytPlayer,
-    fbPlayer
+    fbPlayer,
+    isPlayerPlaying,
 }
 
 

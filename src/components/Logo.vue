@@ -1,6 +1,7 @@
 <template>
   <a href="#" class="glitch" 
     :class="{'glitch-once' : glitchLogoOnce}"
+    @animationend = "handleAnimationEnd()"
     @mouseup.left='logoClicked()'>オフラインテレビ</a>
 </template>
 
@@ -14,16 +15,25 @@ import {pullUpLivestream} from '../scripts/handleEvents'
 export default {
   setup(){
 
+
     function logoClicked(){
       console.log('logo clicked')
       twitchPlayer.value.channel = ''
       // ytPlayer.value.channel = 'UCWxlUwW9BgGISaakjGM37aw'
-      pullUpLivestream('facebook','Chunky-111840363671221')
+      pullUpLivestream('facebook','disguisedtoast')
     }
+
+    function handleAnimationEnd(){
+      console.log('animation ended')
+      if(glitchLogoOnce.value === true){
+        glitchLogoOnce.value = false
+      }
+    } 
 
     return {
       glitchLogoOnce,
-      logoClicked
+      logoClicked,
+      handleAnimationEnd
     }
   }
 }
@@ -61,7 +71,7 @@ export default {
   }
 
   .glitch:hover:before {
-	  animation: glitch .5s cubic-bezier(.25, .46, .45, .94) both infinite
+	  animation: glitch .5s cubic-bezier(.25, .46, .45, .94) both
   } 
 
   .glitch:hover:after {
@@ -84,11 +94,12 @@ export default {
   header{
     padding-right: 0;
   }
-}
 
-@media only screen and (max-width: 600px) {
   .glitch {
     font-size : 1.1rem;
+    display: block ruby;
   }
+
 }
+
 </style>

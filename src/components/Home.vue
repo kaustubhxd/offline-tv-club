@@ -1,11 +1,12 @@
 <template>
     <div class="container" ref='homeContainer'>
-        <Blob v-if="!isLoggedIn"/>
+        <!-- <Blob v-if="!isLoggedIn"/> -->
         <ProfileCard/>
         <!-- {{streamers}} -->
         <div class="twitch-play">
             <LiveStream/>
         </div>
+        <Welcome/>
     </div>
     
 </template>
@@ -18,16 +19,16 @@ import Blob from '../components/Blob'
 import {isLoggedIn,homeState} from '../store/state'
 import ProfileCard from './ProfileCard'
 import LiveStream from './LiveStream'
-
+import Welcome from './Welcome'
 
 export default {
-    components: {Blob,ProfileCard,LiveStream},
+    components: {Blob,ProfileCard,LiveStream,Welcome},
     setup(){
         const homeContainer = ref(null)
         var resizeObserver;
 
         function reportHomeResize(){
-            console.log(homeContainer.value.clientWidth)
+            // console.log(homeContainer.value.clientWidth)
             homeState.value.width   = homeContainer.value.clientWidth
             homeState.value.height  = homeContainer.value.clientHeight
         }
@@ -66,6 +67,10 @@ export default {
     position: relative;
     top: 3rem;
     height: calc(100vh - 3rem);
+
+    background: #0e0e10;
 }
+
+
 </style>
 

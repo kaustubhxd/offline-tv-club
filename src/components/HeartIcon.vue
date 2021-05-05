@@ -1,24 +1,37 @@
 <template>
     <div class="chest">
         <div class="heart-click" @click="toggleAnimation()" ></div>
-        <div class="Heart" :class="{'animate' : isClicked}" ></div>
+        <div class="Heart" :class="{'animate' : isFollowed}" ></div>
   </div>
 </template>
 
 <script>
 // https://codepen.io/rahz7/pen/omoWGP
-import { ref } from '@vue/runtime-core';
+import { computed, ref } from '@vue/runtime-core';
+import {otvFriends,followedStreamers} from '../data/streamers'
+
 export default {
     props: ['streamer'],
     data(props){
-        var isClicked = ref(false);
+        const isFollowed = computed(() => otvFriends.value[props.streamer].isFollowed)
+
         function toggleAnimation(){
-            isClicked.value = !isClicked.value;
-            console.log(`${props.streamer} = ${isClicked.value}`)
+            otvFriends.value[props.streamer].isFollowed = !otvFriends.value[props.streamer].isFollowed
+            if(otvFriends.value[props.streamer].isFollowed){
+                followedStreamers.value.push(props.streamer)
+            }else{
+                followedStreamers.value = followedStreamers.value.filter(element => element !== props.streamer)
+            }
+
+            console.log(followedStreamers.value)
+
+            localStorage.setItem("FOLLOWED", JSON.stringify(followedStreamers.value))
+
+            console.log(`${props.streamer} = ${otvFriends.value[props.streamer].isFollowed}`)
         }
 
         return {
-            isClicked,
+            isFollowed,
             toggleAnimation
         }
     }

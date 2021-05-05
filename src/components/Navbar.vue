@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar" :style="{width : sideNavState.leftWidth}">
-    <div class="navbar-nav">
+    <div>
       <div class="logo">
         <a href="#" class="nav-link expand-nav" @click="navExpandToggle()">
           <span class="link-text logo-text" :style="{left: sideNavState.leftNavExpand? '0px':'-999px'}">Members</span>
@@ -8,23 +8,29 @@
               :style="{marginLeft : sideNavState.leftNavExpand? '12rem':'1.5rem', transform: sideNavState.leftNavExpand? 'rotate(-180deg)':'rotate(0deg)'}">
         </a>
       </div>
-
-        <button class="nav-item" v-for='(streamer,streamer_id) in otvCore' :key='streamer' 
-         @contextmenu.prevent="streamerContextEvent($event, streamer_id)" :title="streamer_id"
-         @mousedown.stop.left="watchLivestream($event,streamer['channel_name'],streamer.isLive)"
-        >
-          <a href="#" class="nav-link">
-            <div class="avatar-container">
-              <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" >
-              <LiveIcon :streamer='streamer_id'/>
-            </div>
-            <div class="streamer-details">
-              <span class="streamer-name">{{streamer['display_name']}}</span>
-              <span class="streamer-game">{{streamer['game_name']}}</span>
-            </div>        
-          </a>
-        </button>
     </div>
+
+    <smooth-scrollbar>
+      <div class="navbar-nav"  :style="{height : navHeight }">
+          <button class="nav-item" v-for='(streamer,streamer_id) in otvCore' :key='streamer' 
+            :title="streamer_id"
+            @contextmenu.prevent="" 
+            @mouseup.stop="openProfileCard($event, streamer_id)" 
+          >
+            <a href="#" class="nav-link">
+              <div class="avatar-container">
+                <img class="streamer-icon" :src="require('../assets/avatars/' + streamer['avatar_name'])" >
+                <LiveIcon :streamer='streamer_id'/>
+              </div>
+              <div class="streamer-details">
+                <span class="streamer-name">{{streamer['display_name']}}</span>
+                <span class="streamer-game">{{streamer['game_name']}}</span>
+              </div>        
+            </a>
+          </button>
+      </div>
+    </smooth-scrollbar>
+
   </nav>
 </template>
 
@@ -49,12 +55,20 @@ export default {
         pullUpLivestream('twitch',streamer)
     }
 
+    function openProfileCard(e,streamer_id){
+      if(e.target.className != 'heart-click'){
+        streamerContextEvent(e, streamer_id,'left')
+      }
+    }
+
     return {
       otvCore,
       sideNavState,
       streamerContextEvent,
       navExpandToggle,
-      watchLivestream
+      watchLivestream,
+      openProfileCard,
+      navHeight : window.innerHeight - 50
     }
   }
 }
@@ -97,13 +111,17 @@ body::-webkit-scrollbar-thumb {
 
 .navbar-nav {
   width : 100%;
+  height: 100%;
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: max-content;
+  overflow-x: none;
+  overflow-y: auto;
+  padding-bottom: 5rem;
+
 }
 
 .nav-item {
@@ -146,7 +164,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .logo {
-  margin-bottom: 10px;
   text-align: center;
   color: var(--text-secondary);
   background: var(--bg-secondary);
@@ -259,5 +276,9 @@ body::-webkit-scrollbar-thumb {
 
   transform: rotate(0deg);
   transition: var(--transition-speed);
+
+  &:hover{
+      transform: rotate(20deg);
+  }
 }
 </style>

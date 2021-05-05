@@ -19,7 +19,7 @@ function leftClickEvent(e){
 // }
 
 
-function streamerContextEvent(e,streamer){
+function streamerContextEvent(e,streamer,navSide){
     profileCard.value.display = 'none'
     // console.log('streamer context')
     // console.log(e)
@@ -28,7 +28,7 @@ function streamerContextEvent(e,streamer){
     profileCard.value.isLive = streamers.value[streamer].isLive
     profileCard.value.avatar = streamers.value[streamer].thumbnailURL
     profileCard.value.streamer = streamers.value[streamer]['display_name']
-    profileCard.value.avatar = streamers.value[streamer].thumbnailURL
+    profileCard.value.backgroundURL = streamers.value[streamer]['backgroundURL']
     if(profileCard.value.isLive){
         profileCard.value.title = streamers.value[streamer].title
         profileCard.value.activityTitle = streamers.value[streamer]['game_name']
@@ -38,13 +38,22 @@ function streamerContextEvent(e,streamer){
     }else{
         profileCard.value.title = streamers.value[streamer].offlineTitle
     }
-    positionContextCard(e)
+    
+    positionContextCard(e,navSide)
     profileCard.value.display = 'block'
 }
 
-function positionContextCard(e){
+function positionContextCard(e,navSide){
     // profileCard.value.top = '20em' 
-    profileCard.value.left = parseInt(sideNavState.value.leftWidth) + 0.5 + 'rem'
+    // console.log(`LEFT WIDTH ${sideNavState.value.leftWidth}`)
+    if(navSide == 'left'){
+        profileCard.value.left = '1rem'
+        profileCard.value.right = ''
+
+    }else if (navSide == 'right'){
+        profileCard.value.right = '1rem'
+        profileCard.value.left = ''
+    }
 }
 
 
