@@ -9,6 +9,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "postcss": "^8.0.0",
+    "rgbaster": "^2.1.1",
     "twitch-js": "^2.0.0-beta.42",
     "vue": "^3.0.0",
     "vue-plugin-load-script": "tserkov/vue-plugin-load-script#20/head",

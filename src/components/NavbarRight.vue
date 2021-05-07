@@ -50,7 +50,7 @@
                 <div class="streamer-details">
                   <div class="streamer-who-what">
                       <span class="streamer-name" :style="{color : streamer.isLive ? 'var(--text-online)' : 'var(--text-primary)'}" >{{streamer['display_name']}}</span>
-                      <span class="streamer-game" :style="{color : streamer.isLive ? 'var(--text-online)' : 'var(--text-primary)'}" >{{streamer['game_name']}}</span>
+                      <span class="streamer-game" :style="{color : streamer.isLive ? 'var(--text-online)' : 'var(--text-primary)'}" :title="streamer['game_name']">{{streamer['game_name']}}</span>
                   </div>
                   <HeartIcon :streamer='streamer["channel_name"]'/>
                 </div>
@@ -347,4 +347,12 @@ button{
   border-bottom: 1px solid #323232;
   width: 100%;
 }
+
+.streamer-game{
+  width: 8rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 </style>  

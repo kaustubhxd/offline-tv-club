@@ -20,6 +20,14 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'lilypichu',
+            'youtube'   : 'UCvWU1K29wCZ8j1NsXsRrKnA',
+            'instagram' : 'lilypichu',
+            'twitter'   : 'LilyPichu',
+            'reddit'    : 'lilypichu',
+            'spotify'   : 'artist/6maAVJxVTGW1xA3LokpQm8'
+        }
     },
     'pokimane' : {
         id          :   44445592,
@@ -38,6 +46,14 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'pokimane',
+            'youtube'   : 'UChXKjLEzAB1K7EZQey7Fm1Q',
+            'instagram' : 'pokimanelol',
+            'twitter'   : 'pokimanelol',
+            'reddit'    : 'Pokimane',
+            'discord'   : 'poki'
+        }
     },
     'scarra' : {
         id          :   22253819,
@@ -56,6 +72,12 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'scarra',
+            'youtube'   : 'UCan_L4XHfSbCKaTCcntyLTQ',
+            'instagram' : 'scarra',
+            'twitter'   : 'scarra',
+        }
     },
     'michaelreeves' : {
         id          :   469790580,
@@ -75,6 +97,13 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'michaelreeves',
+            'youtube'   : 'UCtHaxi4GTYDpJgMSGy7AeSw',
+            'instagram' : 'michaelreeves808',
+            'twitter'   : 'michaelreeves',
+            'reddit'    : 'MichaelReeves',
+        }
     },
     'disguisedtoast' : {
         id          :   87204022,
@@ -94,6 +123,13 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'youtube'   : 'UCUT8RoNBTJvwW1iErP6-b-A',
+            'twitch'    : 'disguisedtoast',
+            'instagram' : 'disguisedtoast',
+            'twitter'   : 'DisguisedToast',
+            'facebook'  : 'disguisedtoast'
+        }
     },
     'yvonnie' : {
         id          :   45184940,
@@ -112,6 +148,12 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'yvonnie',
+            'youtube'   : 'UCgDvko7FcHndaS-QoLJw_PA',
+            'instagram' : 'yvonnieng',
+            'twitter'   : 'yvonnie',
+        }
     },
     'ludwig' : {
         id          :   40934651,
@@ -130,6 +172,15 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'ludwig',
+            'youtube'   : 'UCgDvko7FcHndaS-QoLJw_PA',
+            'spotify'   : '5RWHNOQoCYubFpChXGCpwb',
+            'instagram' : 'ludwigahgren',
+            'twitter'   : 'ludwigahgren',
+            'reddit'    : 'LudwigAhgren',
+            'medium'    : '@ludwigahgren'
+        }
     },
     'quarterjade' : {
         id          :   173758090,
@@ -148,6 +199,15 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'quarterjade',
+            'youtube'   : 'UC_wSuaxwUYsJOBZDWwHIQZg',
+            'instagram' : 'quarterjade',
+            'twitter'   : 'QuarterJade',
+            'tiktok'    : '@quarterjade',
+            'reddit'    : 'Quarterjade',
+            'tumblr'    : 'quarterjade'
+        }
     },
     'masayoshi' : {
         id          :   46673989,
@@ -166,6 +226,13 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'masayoshi',
+            'youtube'   : 'UCvvXM9uvYKXgDy3fdXGeJLw',
+            'instagram' : 'itzmasayoshi',
+            'twitter'   : 'ItzMasayoshi',
+            'spotify'   : 'user/itzmasayoshi'
+        }
     },
     'starsmitten' : {
         id          :   61852275,
@@ -184,6 +251,12 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'starsmitten',
+            'youtube'   : 'UCblGuuU5c-CYqasi25xXXVQ',
+            'instagram' : 'starsmitten_',
+            'twitter'   : 'starsmitten_',
+        }
     },
     'xchocobars' : {
         id          :   42583390,
@@ -202,6 +275,12 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'xchocobars',
+            'youtube'   : 'UCdH7fwkQ5RGVAMIAN2ufm4Q',
+            'instagram' : 'janetrosee',
+            'twitter'   : 'xChocoBars',
+        }
     },
     'sykkuno' : {
         id          :   26154978,
@@ -220,6 +299,12 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'sykkuno',
+            'youtube'   : 'UCRAEUAmW9kletIzOxhpLRFw',
+            'instagram' : 'sykkuwu',
+            'twitter'   : 'sykkuno',
+        }
     },
     'tinakitten' : {
         id          :   42032495,
@@ -238,6 +323,37 @@ const streamers = ref({
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
+        socials     : {
+            'twitch'    : 'tinakitten',
+            'youtube'   : 'UC6gED92IrqY4S94rCC0Z3SQ',
+            'instagram' : 'tinakitten',
+            'twitter'   : 'teanakitten',
+        }
+    },
+    'ariasaki' : {
+        id          :   62510206,
+        display_name:   'AriaSaki',
+        channel_name:   'ariasaki',
+        avatar_name :   'NA',  
+        isLive      :   false,
+        thumbnailURL:  '',
+        backgroundURL: '',
+        isOTVMember :   false,
+        game_id     :   0,
+        game_name   :   '',
+        game_art    :   '',
+        title       :   '',
+        offlineTitle:   'Microwaving poptarts. Want one?',
+        view_count  :   '',
+        timestamp : '',
+        isFollowed: false,
+        socials     : {
+            'youtube'   : 'UCvWU1K29wCZ8j1NsXsRrKnA',
+            'instagram' : 'lilypichu',
+            'twitter'   : 'LilyPichu',
+            'reddit'    : 'lilypichu',
+            'spotify'   : '6maAVJxVTGW1xA3LokpQm8'
+        }
     }
 }); 
 

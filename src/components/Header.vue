@@ -6,7 +6,7 @@
             <ul class="nav__links">
                 <li><a href="#">Streams</a></li>
                 <li><a href="#">Feed</a></li>
-                <li><a href="#">Merch</a></li>
+                <li><a href="#">About</a></li>
             </ul>
         </nav>
         <Toggle/>

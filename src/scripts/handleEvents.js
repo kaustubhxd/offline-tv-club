@@ -28,13 +28,19 @@ function streamerContextEvent(e,streamer,navSide){
     profileCard.value.isLive = streamers.value[streamer].isLive
     profileCard.value.avatar = streamers.value[streamer].thumbnailURL
     profileCard.value.streamer = streamers.value[streamer]['display_name']
+    profileCard.value.streamerKey = streamer
     profileCard.value.backgroundURL = streamers.value[streamer]['backgroundURL']
     if(profileCard.value.isLive){
         profileCard.value.title = streamers.value[streamer].title
         profileCard.value.activityTitle = streamers.value[streamer]['game_name']
         profileCard.value.activityTime = streamers.value[streamer].timestamp
         profileCard.value.activityImage = streamers.value[streamer].game_art
-        profileCard.value.activityViewers =  computed(() => (streamers.value[streamer].view_count / 1000).toFixed(1)) 
+
+        profileCard.value.activityViewers = profileCard.value.activityViewersRaw = streamers.value[streamer].view_count
+        if(streamers.value[streamer].view_count >= 1000){
+            profileCard.value.activityViewers =  computed(() => (streamers.value[streamer].view_count / 1000).toFixed(1).toString() + 'K')
+        }
+        
     }else{
         profileCard.value.title = streamers.value[streamer].offlineTitle
     }

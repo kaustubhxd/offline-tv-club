@@ -1,5 +1,7 @@
 import {computed,ref} from 'vue';
 
+const quirkyMessage = ref('*hiccups*')
+
 const sideNavState = ref({
     leftNavExpand   : false,
     leftOpenWidth   : '15rem',
@@ -27,6 +29,7 @@ const profileCard = ref({
     right: '0rem',
     top : '5rem',
 
+    streamerKey : '',
     avatar    : '',
     streamer  : '',
     title     : '',
@@ -36,6 +39,7 @@ const profileCard = ref({
     activityTitle  :    '',
     activityTime   :   '',
     activityViewers : 0,
+    activityViewersRaw : 0,
 })
 
 const homeState = ref({
@@ -70,6 +74,7 @@ export {
     ytPlayer,
     fbPlayer,
     isPlayerPlaying,
+    quirkyMessage
 }
 
 

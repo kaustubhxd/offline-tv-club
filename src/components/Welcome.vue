@@ -169,13 +169,13 @@
         -278 352 -54 20 -73 21 -608 20 -403 0 -565 -4 -602 -13z"/>
         </g>
         </svg>
-        <!-- <div class="browse-text" v-if="isLoggedIn">All your content in one place.</div> -->
+        <div class="browse-text" v-if="isLoggedIn">{{quirkyMessage}}</div>
         <div class="login-text" v-if="!isLoggedIn" @click='authorizePublic()'>Login using Twitch.</div>
     </div>    
 </template>
 
 <script>
-import {isPlayerPlaying,isLoggedIn} from '../store/state'
+import {isPlayerPlaying,isLoggedIn,quirkyMessage} from '../store/state'
 import {authorizePublic} from '../scripts/twitch'
 
 export default {
@@ -184,6 +184,7 @@ export default {
             isPlayerPlaying,
             isLoggedIn,
             authorizePublic,
+            quirkyMessage
         }
     }
 }

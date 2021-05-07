@@ -18,9 +18,9 @@ export default {
 
     function logoClicked(){
       console.log('logo clicked')
-      twitchPlayer.value.channel = ''
+      // twitchPlayer.value.channel = ''
       // ytPlayer.value.channel = 'UCWxlUwW9BgGISaakjGM37aw'
-      pullUpLivestream('facebook','disguisedtoast')
+      // pullUpLivestream('facebook','disguisedtoast')
     }
 
     function handleAnimationEnd(){
