@@ -16,7 +16,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Busy petting Temmie 🌸',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -27,7 +27,15 @@ const streamers = ref({
             'twitter'   : 'LilyPichu',
             'reddit'    : 'lilypichu',
             'spotify'   : 'artist/6maAVJxVTGW1xA3LokpQm8'
-        }
+        },
+        quotes  :   [
+            `MYKULLLLLLLLLLL!!!!`,
+            `If at first you don’t succeed just stop.`,
+            `You're McCute.`,
+            `We don’t have cake anymore.`,
+            `I wanna go to Cheese Land!`,
+            `*impersonating Toad from Super Mario* Hello!`
+        ]
     },
     'pokimane' : {
         id          :   44445592,
@@ -42,7 +50,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'See you soon! ^_^',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -53,7 +61,10 @@ const streamers = ref({
             'twitter'   : 'pokimanelol',
             'reddit'    : 'Pokimane',
             'discord'   : 'poki'
-        }
+        },
+        quotes: [
+            `..unless.`
+        ]
     },
     'scarra' : {
         id          :   22253819,
@@ -68,7 +79,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Reading some novel',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -77,7 +88,10 @@ const streamers = ref({
             'youtube'   : 'UCan_L4XHfSbCKaTCcntyLTQ',
             'instagram' : 'scarra',
             'twitter'   : 'scarra',
-        }
+        },
+        quotes : [
+            `Up until they lose, they're winning`
+        ]
     },
     'michaelreeves' : {
         id          :   469790580,
@@ -103,7 +117,18 @@ const streamers = ref({
             'instagram' : 'michaelreeves808',
             'twitter'   : 'michaelreeves',
             'reddit'    : 'MichaelReeves',
-        }
+        },
+        quotes: [
+            `NIGHTMARE! NIGHTMARE! NIGHTMARE!`,
+            `Ok, Boomer`,
+            `I'm the Elon Musk of bad ideas`,
+            `Crackhead!`,
+            `And that's social interaction and I don't support it.`,
+            `Nut.`,
+            `BEES BEES BEES THAT'S A LOT OF BEES `,
+            `REEEEEEEEEEE`,
+            `Minecraft is the best game of all time.`
+        ]
     },
     'disguisedtoast' : {
         id          :   87204022,
@@ -119,7 +144,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   `I stream on Facebook.`,
+        offlineTitle:   ``,
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -129,7 +154,11 @@ const streamers = ref({
             'instagram' : 'disguisedtoast',
             'twitter'   : 'DisguisedToast',
             'facebook'  : 'disguisedtoast'
-        }
+        },
+        quotes: [
+            `This guy's Toast.`,
+            `the best stock to invest in is yourself`
+        ]
     },
     'yvonnie' : {
         id          :   45184940,
@@ -144,7 +173,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Grinding LoL probably',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -153,7 +182,13 @@ const streamers = ref({
             'youtube'   : 'UCgDvko7FcHndaS-QoLJw_PA',
             'instagram' : 'yvonnieng',
             'twitter'   : 'yvonnie',
-        }
+        },
+        quotes: [
+            `Starbucks.`,
+            `*screams for no reason*`,
+            `Badger Badger Badger Badger Mushroom Mushroom`,
+            `XD`
+        ]
     },
     'ludwig' : {
         id          :   40934651,
@@ -168,7 +203,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Making Mogul moves off stream',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -180,7 +215,11 @@ const streamers = ref({
             'twitter'   : 'ludwigahgren',
             'reddit'    : 'LudwigAhgren',
             'medium'    : '@ludwigahgren'
-        }
+        },
+        quotes : [
+            `Mogul moves.`,
+            `I am not your friend.`
+        ]
     },
     'quarterjade' : {
         id          :   173758090,
@@ -195,7 +234,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Busy playing with Genji',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -207,7 +246,13 @@ const streamers = ref({
             'tiktok'    : '@quarterjade',
             'reddit'    : 'Quarterjade',
             'tumblr'    : 'quarterjade'
-        }
+        },
+        quotes : [
+            `chat going so fast no one will no I'm gay`,
+            `owa owa`,
+            `sometimes you pop off; other times you press G instead of F`,
+            `i hate egg but i also like egg`,
+        ]
     },
     'masayoshi' : {
         id          :   46673989,
@@ -222,7 +267,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Busy playing with Genji',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -247,7 +292,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Microwaving poptarts. Want one?',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -271,7 +316,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Microwaving poptarts. Want one?',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -295,7 +340,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Microwaving poptarts. Want one?',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -319,7 +364,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Microwaving poptarts. Want one?',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
@@ -343,7 +388,7 @@ const streamers = ref({
         game_name   :   '',
         game_art    :   '',
         title       :   '',
-        offlineTitle:   'Microwaving poptarts. Want one?',
+        offlineTitle:   '',
         view_count  :   '',
         timestamp : '',
         isFollowed: false,
