@@ -2,7 +2,7 @@ import {streamers} from '../data/streamers'
 import {isLoggedIn,glitchLogoOnce,profileCard} from '../store/state'
 
 const CLIENT_ID     = 'vod65kbxn5l31e3czznop13kkfdk7n';
-const REDIRECT_URL  = 'http://localhost:8080';
+const REDIRECT_URL  = window.location.origin;
 
 const REQUEST_ACCESS_TOKEN_URL = 'https://id.twitch.tv/oauth2/authorize?client_id=' + CLIENT_ID + '&redirect_uri=' + encodeURIComponent(REDIRECT_URL) + '&response_type=token'
 
