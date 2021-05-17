@@ -110,7 +110,7 @@ async function getStreamInfo (){
             {
                 "headers": {
                     "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
-                    "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
+                    "Authorization": "Bearer " + ACCESS_TOKEN
                 }
             }
         )
@@ -180,7 +180,7 @@ async function getChannelInfo(){
             {
                 "headers": {
                     "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
-                    "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
+                    "Authorization": "Bearer " + ACCESS_TOKEN
                 }
             }
         )
@@ -237,7 +237,7 @@ async function getGameThumbnails(gameInfo){
         {
             "headers": {
                 "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
-                "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
+                "Authorization": "Bearer " + ACCESS_TOKEN
             }
         }
     )
@@ -329,7 +329,7 @@ export{
 //         {
 //             "headers": {
 //                 "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
-//                 "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
+//                 "Authorization": "Bearer " + ACCESS_TOKEN
 //             }
 //         }
 //     )
@@ -363,7 +363,7 @@ export{
 //     {
 //         "headers": {
 //             "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
-//             "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
+//             "Authorization": "Bearer " + ACCESS_TOKEN
 //         }
 //     }
 // )
@@ -390,7 +390,7 @@ export{
 //     {
 //         "headers": {
 //             "Client-ID": "vod65kbxn5l31e3czznop13kkfdk7n",
-//             "Authorization": "Bearer ad12tfpfni5d725ji8vgc266vfbbct"
+//             "Authorization": "Bearer " + ACCESS_TOKEN
 //         }
 //     }
 // )
