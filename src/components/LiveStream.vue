@@ -5,9 +5,9 @@
   <YTPlayer v-if="ytPlayer.channel != ''"
     :channel="ytPlayer.channel"
   ></YTPlayer>
-  <FBPlayer v-if="fbPlayer.channel != ''"
+  <!-- <FBPlayer v-if="fbPlayer.channel != ''"
     :channel="fbPlayer.channel"
-    ></FBPlayer>
+    ></FBPlayer> -->
 </template>
 
 <script>
