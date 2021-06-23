@@ -3,11 +3,11 @@
     <div class="header-content">
         <Logo/>
         <nav>
-            <ul class="nav__links">
+            <!-- <ul class="nav__links">
                 <li><a href="#">Streams</a></li>
                 <li><a href="#">Feed</a></li>
                 <li><a href="#">About</a></li>
-            </ul>
+            </ul> -->
         </nav>
         <Toggle/>
         <!-- <a class="cta" href="#">About</a> -->
