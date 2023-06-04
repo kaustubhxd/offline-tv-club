@@ -1,4 +1,5 @@
-# OfflineTV Club
+# OfflineTV Club 
+### A website dedicated to forming an online community for fans of the online streaming collective OfflineTV 
 
 ### See live: https://kaustubhxd.github.io/offlinetv-club/
 
