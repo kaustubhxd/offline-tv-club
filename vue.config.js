@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'    ? '/offlineTV/'    : '/',
+    publicPath: process.env.NODE_ENV === 'production'    ? '/offlinetv-club/'    : '/',
     css: {
         loaderOptions: {
           sass: {
