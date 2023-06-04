@@ -1,6 +1,6 @@
-# offlinetv
+# OfflineTV Club
 
-### See live: https://kaustubhxd.github.io/offlineTV/
+### See live: https://kaustubhxd.github.io/offlinetv-club/
 
 Pull requests welcome!
 
