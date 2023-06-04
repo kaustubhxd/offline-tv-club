@@ -1,8 +1,6 @@
 # offlinetv
 
-### See live: https://itskaustubh.github.io/offlineTV/
-
-Also Deployed on https://offlinetv.kaustubh.app
+### See live: https://kaustubhxd.github.io/offlineTV/
 
 Pull requests welcome!
 
